@@ -1,4 +1,4 @@
-package pl.lodz.p.pk.sudoku;
+package pl.lodz.p.sudoku;
 
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +18,7 @@ class SudokuBoardTest {
         assertTrue(sudoku2.fillBoard(sudoku2.getBoard()));
         int[][] board1 = sudoku1.getBoard();
         int[][] board2 = sudoku2.getBoard();
-        assertFalse(Arrays.equals(board1, board2));
+        assertFalse(Arrays.deepEquals(board1, board2));
     }
 
     @Test
@@ -26,9 +26,7 @@ class SudokuBoardTest {
         SudokuBoard sudoku1 = new SudokuBoard();
         SudokuBoard sudoku2 = new SudokuBoard();
         int num1 = 0, num2 = 0;
-        int arr1[] = new int[2];
-        int arr2[] = new int[2];
-        for(int j = 0; j < 9; j++) {
+        for (int j = 0; j < 9; j++) {
             num1 = sudoku1.getValue(0, j);
             num2 = sudoku2.getValue(0, j);
             if(num1 != num2) break;
@@ -37,13 +35,13 @@ class SudokuBoardTest {
     }
 
     @Test
-    void testIsRowCorrect() {
+    void testRowCorrect() {
         SudokuBoard sudoku = new SudokuBoard();
         sudoku.fillBoard(sudoku.getBoard());
         boolean rowCorrect = true;
         Set<Integer> row = new HashSet<Integer>();
-        for(int i = 0; i < 9; i++) {
-            for(int j = 0; j < 9; j++) {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
                 row.add(sudoku.getValue(i, j));
             }
             if(sudoku.getBoard()[i].length != row.size()) rowCorrect = false;
@@ -53,18 +51,53 @@ class SudokuBoardTest {
     }
 
     @Test
-    void testIsCollumnCorrect() {
+    void testCollumnCorrect() {
         SudokuBoard sudoku = new SudokuBoard();
         sudoku.fillBoard(sudoku.getBoard());
         boolean colCorrect = true;
         Set<Integer> col = new HashSet<Integer>();
-        for(int i = 0; i < 9; i++) {
-            for(int j = 0; j < 9; j++) {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
                 col.add(sudoku.getValue(j, i));
             }
             if(sudoku.getBoard().length != col.size()) colCorrect = false;
             col.clear();
         }
         assertTrue(colCorrect);
+    }
+
+    @Test
+    void testBoxCorrect() {
+        SudokuBoard sudoku = new SudokuBoard();
+        sudoku.fillBoard(sudoku.getBoard());
+        boolean boxCorrect = true;
+        Set<Integer> col = new HashSet<Integer>();
+        for (int i = 0; i <= 6; i += 3) {
+            for (int j = 0; j <= 6; j += 3) {
+                for (int k = 0; k < 3; k++) {
+                    for (int l = 0; l < 3; l++) {
+                        col.add(sudoku.getValue(i + k, j + l));
+                    }
+                }
+                if(col.size() != 9) boxCorrect = false;
+                col.clear();
+            }
+        }
+        assertTrue(boxCorrect);
+    }
+
+    @Test
+    void testSetValue() {
+        SudokuBoard sudoku = new SudokuBoard();
+        sudoku.fillBoard(sudoku.getBoard());
+        if(sudoku.getValue(0, 0) != 1) {
+            assertNotEquals(1, sudoku.getValue(0, 0));
+            sudoku.setValue(0, 0, 1);
+            assertEquals(1, sudoku.getValue(0, 0));
+        } else {
+            assertEquals(1, sudoku.getValue(0, 0));
+            sudoku.setValue(0, 0, 2);
+            assertEquals(2, sudoku.getValue(0, 0));
+        }
     }
 }

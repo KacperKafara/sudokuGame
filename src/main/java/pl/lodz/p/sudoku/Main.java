@@ -1,4 +1,4 @@
-package pl.lodz.p.pk.sudoku;
+package pl.lodz.p.sudoku;
 
 import java.util.Arrays;
 
@@ -20,7 +20,6 @@ public class Main {
     }
 
     public static void main(String[] args) {
-
         SudokuBoard sudoku = new SudokuBoard();
         sudoku.fillBoard(sudoku.getBoard());
         drawBoard(sudoku.getBoard());
