@@ -4,7 +4,8 @@ import java.util.Random;
 
 public class SudokuBoard {
 
-    private final int[][] board;
+    private int[][] board;
+    private final SudokuSolver sudokuSolver;
 
     private int[][] initBoard() {
         int[][] result = new int[9][9];
@@ -39,15 +40,20 @@ public class SudokuBoard {
 
     public SudokuBoard() {
         board = initBoard();
+        sudokuSolver = new BacktrackingSudokuSolver();
     }
 
     private boolean isRowCorrect(int[][] board, int x, int y, int number) {
         for (int i = 0; i < 9; i++) {
-            if (board[i][y] == number) {
+            if (board[x][i] == number) {
                 return false;
             }
         }
         return true;
+    }
+
+    public void solveGame() {
+        sudokuSolver.solve(this);
     }
 
 }

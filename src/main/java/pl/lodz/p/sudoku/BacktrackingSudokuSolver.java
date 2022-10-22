@@ -1,8 +1,10 @@
 package pl.lodz.p.sudoku;
 
 public class BacktrackingSudokuSolver implements SudokuSolver {
+
     @Override
-    public boolean solve(int[][] sudokuBoard) {
+    public boolean solve(SudokuBoard board) {
+        int[][] sudokuBoard = board.getBoard();
         int row = -1;
         int col = -1;
         boolean isEmpty = true;
@@ -28,7 +30,7 @@ public class BacktrackingSudokuSolver implements SudokuSolver {
         for (int num = 1; num <= 9; num++) {
             if (isLayoutCorrect(sudokuBoard, row, col, num)) {
                 sudokuBoard[row][col] = num;
-                if (solve(sudokuBoard)) {
+                if (solve(board)) {
                     return true;
                 } else {
                     sudokuBoard[row][col] = 0;
@@ -55,7 +57,7 @@ public class BacktrackingSudokuSolver implements SudokuSolver {
         return true;
     }
 
-    private boolean isRowCorrect(int[][] board, int x, int y, int number) {
+    private boolean isCollumnCorrect(int[][] board, int x, int y, int number) {
         for (int i = 0; i < 9; i++) {
             if (board[i][y] == number) {
                 return false;
@@ -64,7 +66,7 @@ public class BacktrackingSudokuSolver implements SudokuSolver {
         return true;
     }
 
-    private boolean isCollumnCorrect(int[][] board, int x, int y, int number) {
+    private boolean isRowCorrect(int[][] board, int x, int y, int number) {
         for (int i = 0; i < 9; i++) {
             if (board[x][i] == number) {
                 return false;

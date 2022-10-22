@@ -14,8 +14,6 @@ class SudokuBoardTest {
     void testFillBoard() {
         SudokuBoard sudoku1 = new SudokuBoard();
         SudokuBoard sudoku2 = new SudokuBoard();
-        assertTrue(sudoku1.fillBoard(sudoku1.getBoard()));
-        assertTrue(sudoku2.fillBoard(sudoku2.getBoard()));
         int[][] board1 = sudoku1.getBoard();
         int[][] board2 = sudoku2.getBoard();
         assertFalse(Arrays.deepEquals(board1, board2));
@@ -37,7 +35,7 @@ class SudokuBoardTest {
     @Test
     void testRowCorrect() {
         SudokuBoard sudoku = new SudokuBoard();
-        sudoku.fillBoard(sudoku.getBoard());
+        sudoku.solveGame();
         boolean rowCorrect = true;
         Set<Integer> row = new HashSet<Integer>();
         for (int i = 0; i < 9; i++) {
@@ -53,7 +51,7 @@ class SudokuBoardTest {
     @Test
     void testCollumnCorrect() {
         SudokuBoard sudoku = new SudokuBoard();
-        sudoku.fillBoard(sudoku.getBoard());
+        sudoku.solveGame();
         boolean colCorrect = true;
         Set<Integer> col = new HashSet<Integer>();
         for (int i = 0; i < 9; i++) {
@@ -69,7 +67,7 @@ class SudokuBoardTest {
     @Test
     void testBoxCorrect() {
         SudokuBoard sudoku = new SudokuBoard();
-        sudoku.fillBoard(sudoku.getBoard());
+        sudoku.solveGame();
         boolean boxCorrect = true;
         Set<Integer> col = new HashSet<Integer>();
         for (int i = 0; i <= 6; i += 3) {
@@ -89,7 +87,7 @@ class SudokuBoardTest {
     @Test
     void testSetValue() {
         SudokuBoard sudoku = new SudokuBoard();
-        sudoku.fillBoard(sudoku.getBoard());
+        sudoku.solveGame();
         if(sudoku.getValue(0, 0) != 1) {
             assertNotEquals(1, sudoku.getValue(0, 0));
             sudoku.setValue(0, 0, 1);
