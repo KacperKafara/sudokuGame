@@ -66,6 +66,7 @@ public class BacktrackingSudokuSolver implements SudokuSolver {
         return true;
     }
 
+    @Override
     public boolean isRowCorrect(int[][] board, int x, int y, int number) {
         for (int i = 0; i < 9; i++) {
             if (board[x][i] == number) {
