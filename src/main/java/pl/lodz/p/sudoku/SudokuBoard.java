@@ -43,15 +43,6 @@ public class SudokuBoard {
         board = initBoard();
     }
 
-    private boolean isRowCorrect(int[][] board, int x, int y, int number) {
-        for (int i = 0; i < 9; i++) {
-            if (board[x][i] == number) {
-                return false;
-            }
-        }
-        return true;
-    }
-
     public void solveGame() {
         sudokuSolver.solve(this);
     }
