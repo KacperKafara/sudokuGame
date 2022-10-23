@@ -42,7 +42,7 @@ public class BacktrackingSudokuSolver implements SudokuSolver {
 
     private boolean isLayoutCorrect(int[][] board, int x, int y, int number) {
 
-        if (!isRowCorrect(board, x, y, number)) {
+        if (isRowCorrect(board, x, y, number)) {
             return false;
         }
 
@@ -66,13 +66,13 @@ public class BacktrackingSudokuSolver implements SudokuSolver {
         return true;
     }
 
-    private boolean isRowCorrect(int[][] board, int x, int y, int number) {
+    public boolean isRowCorrect(int[][] board, int x, int y, int number) {
         for (int i = 0; i < 9; i++) {
             if (board[x][i] == number) {
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     private boolean isBoxCorrect(int[][] board, int x, int y, int number) {

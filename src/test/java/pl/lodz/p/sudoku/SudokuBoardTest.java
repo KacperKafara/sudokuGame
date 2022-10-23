@@ -37,7 +37,7 @@ class SudokuBoardTest {
         SudokuBoard sudoku = new SudokuBoard();
         sudoku.solveGame();
         boolean rowCorrect = true;
-        Set<Integer> row = new HashSet<Integer>();
+        Set<Integer> row = new HashSet<>();
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 row.add(sudoku.getValue(i, j));
@@ -53,7 +53,7 @@ class SudokuBoardTest {
         SudokuBoard sudoku = new SudokuBoard();
         sudoku.solveGame();
         boolean colCorrect = true;
-        Set<Integer> col = new HashSet<Integer>();
+        Set<Integer> col = new HashSet<>();
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 col.add(sudoku.getValue(j, i));
@@ -69,7 +69,7 @@ class SudokuBoardTest {
         SudokuBoard sudoku = new SudokuBoard();
         sudoku.solveGame();
         boolean boxCorrect = true;
-        Set<Integer> col = new HashSet<Integer>();
+        Set<Integer> col = new HashSet<>();
         for (int i = 0; i <= 6; i += 3) {
             for (int j = 0; j <= 6; j += 3) {
                 for (int k = 0; k < 3; k++) {

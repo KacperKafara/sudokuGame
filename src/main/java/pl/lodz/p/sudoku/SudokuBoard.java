@@ -16,7 +16,7 @@ public class SudokuBoard {
                     int random = 0;
                     do {
                         random = rand.nextInt(9) + 1;
-                    } while (!isRowCorrect(result, i, j, random));
+                    } while (sudokuSolver.isRowCorrect(result, i, j, random));
                     result[i][j] = random;
                 } else {
                     result[i][j] = 0;
@@ -39,8 +39,8 @@ public class SudokuBoard {
     }
 
     public SudokuBoard() {
-        board = initBoard();
         sudokuSolver = new BacktrackingSudokuSolver();
+        board = initBoard();
     }
 
     private boolean isRowCorrect(int[][] board, int x, int y, int number) {
