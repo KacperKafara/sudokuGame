@@ -38,9 +38,9 @@ public class SudokuBoard {
         board[x][y] = value;
     }
 
-    public SudokuBoard() {
-        sudokuSolver = new BacktrackingSudokuSolver();
-        board = initBoard();
+    public SudokuBoard(SudokuSolver solver) {
+        this.sudokuSolver = solver;
+        this.board = initBoard();
     }
 
     public void solveGame() {

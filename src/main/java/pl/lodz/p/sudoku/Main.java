@@ -20,7 +20,8 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        SudokuBoard sudoku = new SudokuBoard();
+        SudokuSolver solver = new BacktrackingSudokuSolver();
+        SudokuBoard sudoku = new SudokuBoard(solver);
         sudoku.solveGame();
         drawBoard(sudoku.getBoard());
     }
