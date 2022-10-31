@@ -15,8 +15,8 @@ class SudokuBoardTest {
         SudokuSolver solver = new BacktrackingSudokuSolver();
         SudokuBoard sudoku1 = new SudokuBoard(solver);
         SudokuBoard sudoku2 = new SudokuBoard(solver);
-        int[][] board1 = sudoku1.getBoard();
-        int[][] board2 = sudoku2.getBoard();
+        SudokuField[][] board1 = sudoku1.getBoard();
+        SudokuField[][] board2 = sudoku2.getBoard();
         assertFalse(Arrays.deepEquals(board1, board2));
     }
 

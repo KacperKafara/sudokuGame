@@ -2,7 +2,7 @@ package pl.lodz.p.sudoku;
 
 public class SudokuField {
 
-    private int value;
+    private int value=0;
 
     public int getFieldValue() {
         return value;
