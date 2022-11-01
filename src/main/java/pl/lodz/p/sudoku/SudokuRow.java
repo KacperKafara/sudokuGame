@@ -2,7 +2,7 @@ package pl.lodz.p.sudoku;
 
 public class SudokuRow {
 
-    private SudokuField[] row;
+    private SudokuField[] row = new SudokuField[9];
 
     public SudokuField[] getRow() {
         return row;

@@ -13,11 +13,18 @@ public class SudokuBoard {
 
     private SudokuField[][] initBoard() {
         SudokuField[][] result = new SudokuField[9][9];
+        SudokuRow[] row = new SudokuRow[9];
+        SudokuColumn[] column = new SudokuColumn[9];
+        SudokuBox[] box = new SudokuBox[9];
+
 
         for (int i = 0; i < result.length; i++) {
             for (int j = 0; j < result.length; j++) {
                 result[i][j] = new SudokuField();
             }
+            row[i] = new SudokuRow();
+            column[i] = new SudokuColumn();
+            box[i] = new SudokuBox();
         }
 
         Random rand = new Random();
@@ -34,6 +41,20 @@ public class SudokuBoard {
                 }
             }
         }
+
+        for (int i = 0; i < result.length; i++) {
+            for (int j = 0; j < result.length; j++) {
+                row[i].setRow(result[i][j],j);
+                column[j].setColumn(result[i][j],i);
+                box[((i / 3)*3)+(j / 3)].setBox(result[i][j],(i % 3)*3+(j % 3));
+            }
+        }
+
+
+        this.row=row;
+        this.column=column;
+        this.box=box;
+
         return result;
     }
 
