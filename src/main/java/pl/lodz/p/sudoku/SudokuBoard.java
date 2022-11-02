@@ -46,14 +46,14 @@ public class SudokuBoard {
             for (int j = 0; j < result.length; j++) {
                 row[i].setRow(result[i][j],j);
                 column[j].setColumn(result[i][j],i);
-                box[((i / 3)*3)+(j / 3)].setBox(result[i][j],(i % 3)*3+(j % 3));
+                box[((i / 3) * 3) + (j / 3)].setBox(result[i][j],(i % 3) * 3 + (j % 3));
             }
         }
 
 
-        this.row=row;
-        this.column=column;
-        this.box=box;
+        this.row = row;
+        this.column = column;
+        this.box = box;
 
         return result;
     }
@@ -79,4 +79,15 @@ public class SudokuBoard {
         sudokuSolver.solve(this);
     }
 
+    public SudokuRow getRow(int y) {
+        return row[y];
+    }
+
+    public SudokuColumn getColumn(int x) {
+        return column[x];
+    }
+
+    public SudokuBox getBox(int x, int y) {
+        return box[((x / 3) * 3) + (y / 3)];
+    }
 }

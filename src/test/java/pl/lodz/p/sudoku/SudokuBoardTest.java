@@ -104,4 +104,32 @@ class SudokuBoardTest {
             assertEquals(2, sudoku.getValue(0, 0));
         }
     }
+
+    @Test
+    void testVerify() {
+        SudokuSolver solver = new BacktrackingSudokuSolver();
+        SudokuBoard sudoku = new SudokuBoard(solver);
+        sudoku.solveGame();
+        assertTrue(sudoku.getRow(0).verify());
+        assertTrue(sudoku.getColumn(0).verify());
+        assertTrue(sudoku.getBox(0, 0).verify());
+        if(sudoku.getValue(0, 0) != 1) {
+            sudoku.setValue(0, 0, 1);
+            assertFalse(sudoku.getRow(0).verify());
+        } else {
+            sudoku.setValue(0, 0, 2);
+            assertFalse(sudoku.getRow(0).verify());
+        }
+
+    }
+
+    @Test
+    void testGet() {
+        SudokuSolver solver = new BacktrackingSudokuSolver();
+        SudokuBoard sudoku = new SudokuBoard(solver);
+        sudoku.solveGame();
+        assertEquals(9, sudoku.getRow(0).getRow().length);
+        assertEquals(9, sudoku.getColumn(0).getColumn().length);
+        assertEquals(9, sudoku.getBox(0, 0).getBox().length);
+    }
 }

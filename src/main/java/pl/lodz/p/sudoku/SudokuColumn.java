@@ -1,14 +1,12 @@
 package pl.lodz.p.sudoku;
 
-public class SudokuColumn {
-
-    private SudokuField[] column = new SudokuField[9];
+public class SudokuColumn extends PartOfTheBoard {
 
     public SudokuField[] getColumn() {
-        return column;
+        return fields;
     }
 
     public void setColumn(SudokuField column,int fieldInColumn) {
-        this.column[fieldInColumn] = column;
+        this.fields[fieldInColumn] = column;
     }
 }

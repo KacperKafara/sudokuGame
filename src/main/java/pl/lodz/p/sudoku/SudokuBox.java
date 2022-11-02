@@ -1,14 +1,12 @@
 package pl.lodz.p.sudoku;
 
-public class SudokuBox {
-
-    private SudokuField[] box = new SudokuField[9];
+public class SudokuBox extends PartOfTheBoard {
 
     public SudokuField[] getBox() {
-        return box;
+        return fields;
     }
 
     public void setBox(SudokuField box,int fieldInBox) {
-        this.box[fieldInBox] = box;
+        this.fields[fieldInBox] = box;
     }
 }
