@@ -1,12 +1,14 @@
 package pl.lodz.p.sudoku;
 
+import java.util.List;
+
 public class SudokuRow extends PartOfTheBoard {
 
-    public SudokuField[] getRow() {
+    public List<SudokuField> getRow() {
         return fields;
     }
 
     public void setRow(SudokuField row,int fieldInRow) {
-        this.fields[fieldInRow] = row;
+        this.fields.set(fieldInRow, row);
     }
 }
