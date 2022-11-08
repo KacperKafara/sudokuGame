@@ -1,14 +1,15 @@
 package pl.lodz.p.sudoku;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class Main {
-    public static void drawBoard(SudokuField[][] board) {
+    public static void drawBoard(List<SudokuField> board) {
         System.out.println("_____________________________________");
         for (int i = 0;i < 9;i++) {
             System.out.print("|");
             for (int j = 0;j < 9;j++) {
-                System.out.print(" " + board[i][j].getFieldValue() + " " + "|");
+                System.out.print(" " + board.get(i * 9 + j).getFieldValue() + " " + "|");
             }
             System.out.println("");
             if (i < 8) {

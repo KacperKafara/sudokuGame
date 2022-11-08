@@ -1,26 +1,29 @@
 package pl.lodz.p.sudoku;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class SudokuBoard {
 
-    private SudokuField[][] board;
+    private List<SudokuField> board = Arrays.asList(new SudokuField[81]);
     private SudokuRow[] row;
     private SudokuColumn[] column;
     private SudokuBox[] box;
     private final SudokuSolver sudokuSolver;
 
 
-    private SudokuField[][] initBoard() {
-        SudokuField[][] result = new SudokuField[9][9];
+    private List<SudokuField> initBoard() {
+        List<SudokuField> result = Arrays.asList(new SudokuField[81]);
         SudokuRow[] row = new SudokuRow[9];
         SudokuColumn[] column = new SudokuColumn[9];
         SudokuBox[] box = new SudokuBox[9];
 
 
-        for (int i = 0; i < result.length; i++) {
-            for (int j = 0; j < result.length; j++) {
-                result[i][j] = new SudokuField();
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                result.set(i * 9 + j, new SudokuField());
             }
             row[i] = new SudokuRow();
             column[i] = new SudokuColumn();
@@ -28,25 +31,25 @@ public class SudokuBoard {
         }
 
         Random rand = new Random();
-        for (int i = 0; i < result.length; i++) {
-            for (int j = 0; j < result.length; j++) {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
                 if (i == 0) {
                     int random = 0;
                     do {
                         random = rand.nextInt(9) + 1;
-                    } while (sudokuSolver.isRowCorrect(result, i, j, random));
-                    result[i][j].setFieldValue(random);
+                    } while (checkRow(result, i, j, random));
+                    result.get(i * 9 + j).setFieldValue(random);
                 } else {
-                    result[i][j].setFieldValue(0);
+                    result.get(i * 9 + j).setFieldValue(0);
                 }
             }
         }
 
-        for (int i = 0; i < result.length; i++) {
-            for (int j = 0; j < result.length; j++) {
-                row[i].setRow(result[i][j],j);
-                column[j].setColumn(result[i][j],i);
-                box[((i / 3) * 3) + (j / 3)].setBox(result[i][j],(i % 3) * 3 + (j % 3));
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                row[i].setRow(result.get(i * 9 + j), j);
+                column[j].setColumn(result.get(i * 9 + j), i);
+                box[((i / 3) * 3) + (j / 3)].setBox(result.get(i * 9 + j), (i % 3) * 3 + (j % 3));
             }
         }
 
@@ -58,16 +61,25 @@ public class SudokuBoard {
         return result;
     }
 
-    public SudokuField[][] getBoard() {
-        return board.clone();
+    private boolean checkRow(List<SudokuField> board, int x, int y, int number) {
+        for (int i = 0; i < 9; i++) {
+            if (board.get(i).getFieldValue() == number) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public List<SudokuField> getBoard() {
+        return board;
     }
 
     public int getValue(int x, int y) {
-        return board[x][y].getFieldValue();
+        return board.get(x * 9 + y).getFieldValue();
     }
 
     public void setValue(int x, int y, int value) {
-        board[x][y].setFieldValue(value);
+        board.get(x * 9 + y).setFieldValue(value);
     }
 
     public SudokuBoard(SudokuSolver solver) {

@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,9 +16,10 @@ class SudokuBoardTest {
         SudokuSolver solver = new BacktrackingSudokuSolver();
         SudokuBoard sudoku1 = new SudokuBoard(solver);
         SudokuBoard sudoku2 = new SudokuBoard(solver);
-        SudokuField[][] board1 = sudoku1.getBoard();
-        SudokuField[][] board2 = sudoku2.getBoard();
-        assertFalse(Arrays.deepEquals(board1, board2));
+        List<SudokuField> board1 = sudoku1.getBoard();
+        List<SudokuField> board2 = sudoku2.getBoard();
+        assertFalse(board1.equals(board2));
+
     }
 
     @Test
@@ -45,7 +47,7 @@ class SudokuBoardTest {
             for (int j = 0; j < 9; j++) {
                 row.add(sudoku.getValue(i, j));
             }
-            if(sudoku.getBoard()[i].length != row.size()) rowCorrect = false;
+            if(9 != row.size()) rowCorrect = false;
             row.clear();
         }
         assertTrue(rowCorrect);
@@ -62,7 +64,7 @@ class SudokuBoardTest {
             for (int j = 0; j < 9; j++) {
                 col.add(sudoku.getValue(j, i));
             }
-            if(sudoku.getBoard().length != col.size()) colCorrect = false;
+            if(9 != col.size()) colCorrect = false;
             col.clear();
         }
         assertTrue(colCorrect);
