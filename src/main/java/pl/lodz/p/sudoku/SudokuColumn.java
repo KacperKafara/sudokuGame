@@ -8,7 +8,7 @@ public class SudokuColumn extends PartOfTheBoard {
         return fields;
     }
 
-    public void setColumn(SudokuField column,int fieldInColumn) {
-        this.fields.set(fieldInColumn, column);
+    public void setColumn(SudokuField field, int fieldInColumn) {
+        this.fields.set(fieldInColumn, field);
     }
 }

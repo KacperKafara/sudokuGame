@@ -10,7 +10,7 @@ public class SudokuBoard {
     private List<SudokuField> board = Arrays.asList(new SudokuField[81]);
     private List<SudokuRow> row = Arrays.asList(new SudokuRow[9]);
     private List<SudokuColumn> column = Arrays.asList(new SudokuColumn[9]);
-    private SudokuBox[] box;
+    private List<SudokuBox> box = Arrays.asList(new SudokuBox[9]);
     private final SudokuSolver sudokuSolver;
 
 
@@ -18,7 +18,7 @@ public class SudokuBoard {
         List<SudokuField> result = Arrays.asList(new SudokuField[81]);
         List<SudokuRow> row = Arrays.asList(new SudokuRow[9]);
         List<SudokuColumn> column = Arrays.asList(new SudokuColumn[9]);
-        SudokuBox[] box = new SudokuBox[9];
+        List<SudokuBox> box = Arrays.asList(new SudokuBox[9]);
 
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
@@ -26,7 +26,7 @@ public class SudokuBoard {
             }
             row.set(i, new SudokuRow());
             column.set(i, new SudokuColumn());
-            box[i] = new SudokuBox();
+            box.set(i, new SudokuBox());
         }
 
         Random rand = new Random();
@@ -47,8 +47,9 @@ public class SudokuBoard {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 row.get(i).setRow(result.get(i * 9 + j), j);
-                column.get(i).setColumn(result.get(i * 9 + j), i);
-                box[((i / 3) * 3) + (j / 3)].setBox(result.get(i * 9 + j), (i % 3) * 3 + (j % 3));
+                column.get(j).setColumn(result.get(i * 9 + j), i);
+                box.get(((i / 3) * 3) + (j / 3)).setBox(result.get(i * 9 + j),
+                        (i % 3) * 3 + (j % 3));
             }
         }
 
@@ -99,6 +100,6 @@ public class SudokuBoard {
     }
 
     public SudokuBox getBox(int x, int y) {
-        return box[((x / 3) * 3) + (y / 3)];
+        return box.get(((x / 3) * 3) + (y / 3));
     }
 }

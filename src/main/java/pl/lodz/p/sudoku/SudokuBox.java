@@ -8,7 +8,7 @@ public class SudokuBox extends PartOfTheBoard {
         return fields;
     }
 
-    public void setBox(SudokuField box,int fieldInBox) {
-        this.fields.set(fieldInBox, box);
+    public void setBox(SudokuField field, int fieldInBox) {
+        this.fields.set(fieldInBox, field);
     }
 }
