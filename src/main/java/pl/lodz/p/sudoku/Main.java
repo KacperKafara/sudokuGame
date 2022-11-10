@@ -1,6 +1,5 @@
 package pl.lodz.p.sudoku;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class Main {
@@ -25,5 +24,6 @@ public class Main {
         SudokuBoard sudoku = new SudokuBoard(solver);
         sudoku.solveGame();
         drawBoard(sudoku.getBoard());
+
     }
 }

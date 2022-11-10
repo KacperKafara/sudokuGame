@@ -44,11 +44,11 @@ public class BacktrackingSudokuSolver implements SudokuSolver {
 
     private boolean isLayoutCorrect(SudokuBoard board, int x, int y, int number) {
 
-        if (isRowCorrect(board, x, y, number)) {
+        if (isRowCorrect(board, x, number)) {
             return false;
         }
 
-        if (!isCollumnCorrect(board, x, y, number)) {
+        if (!isCollumnCorrect(board, y, number)) {
             return false;
         }
 
@@ -59,7 +59,7 @@ public class BacktrackingSudokuSolver implements SudokuSolver {
         return true;
     }
 
-    private boolean isCollumnCorrect(SudokuBoard board, int x, int y, int number) {
+    private boolean isCollumnCorrect(SudokuBoard board, int y, int number) {
         for (int i = 0; i < 9; i++) {
             if (board.getValue(i, y) == number) {
                 return false;
@@ -68,7 +68,7 @@ public class BacktrackingSudokuSolver implements SudokuSolver {
         return true;
     }
 
-    private boolean isRowCorrect(SudokuBoard board, int x, int y, int number) {
+    private boolean isRowCorrect(SudokuBoard board, int x, int number) {
         for (int i = 0; i < 9; i++) {
             if (board.getValue(x, i) == number) {
                 return true;

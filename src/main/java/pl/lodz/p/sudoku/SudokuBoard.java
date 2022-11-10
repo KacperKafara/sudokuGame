@@ -1,6 +1,5 @@
 package pl.lodz.p.sudoku;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -36,8 +35,8 @@ public class SudokuBoard {
                     int random = 0;
                     do {
                         random = rand.nextInt(9) + 1;
-                    } while (checkRow(result, i, j, random));
-                    result.get(i * 9 + j).setFieldValue(random);
+                    } while (checkRow(result, random));
+                    result.get(j).setFieldValue(random);
                 } else {
                     result.get(i * 9 + j).setFieldValue(0);
                 }
@@ -48,8 +47,7 @@ public class SudokuBoard {
             for (int j = 0; j < 9; j++) {
                 row.get(i).setRow(result.get(i * 9 + j), j);
                 column.get(j).setColumn(result.get(i * 9 + j), i);
-                box.get(((i / 3) * 3) + (j / 3)).setBox(result.get(i * 9 + j),
-                        (i % 3) * 3 + (j % 3));
+                box.get(i / 3 * 3 + j / 3).setBox(result.get(i * 9 + j), i % 3 * 3 + j % 3);
             }
         }
 
@@ -61,7 +59,7 @@ public class SudokuBoard {
         return result;
     }
 
-    private boolean checkRow(List<SudokuField> board, int x, int y, int number) {
+    private boolean checkRow(List<SudokuField> board, int number) {
         for (int i = 0; i < 9; i++) {
             if (board.get(i).getFieldValue() == number) {
                 return true;
@@ -100,6 +98,6 @@ public class SudokuBoard {
     }
 
     public SudokuBox getBox(int x, int y) {
-        return box.get(((x / 3) * 3) + (y / 3));
+        return box.get(x / 3 * 3 + y / 3);
     }
 }
