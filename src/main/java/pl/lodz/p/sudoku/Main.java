@@ -24,6 +24,5 @@ public class Main {
         SudokuBoard sudoku = new SudokuBoard(solver);
         sudoku.solveGame();
         drawBoard(sudoku.getBoard());
-
     }
 }

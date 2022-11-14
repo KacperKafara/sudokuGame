@@ -3,6 +3,7 @@ package pl.lodz.p.sudoku;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class SudokuBoard {
 
@@ -99,5 +100,14 @@ public class SudokuBoard {
 
     public SudokuBox getBox(int x, int y) {
         return box.get(x / 3 * 3 + y / 3);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("board", board)
+                .append("rows", row)
+                .append("columns", column)
+                .append("boxes", box).toString();
     }
 }
