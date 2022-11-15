@@ -134,4 +134,41 @@ class SudokuBoardTest {
         assertEquals(9, sudoku.getColumn(0).getColumn().size());
         assertEquals(9, sudoku.getBox(0, 0).getBox().size());
     }
+
+    @Test
+    void testEquals() {
+        SudokuSolver solver = new BacktrackingSudokuSolver();
+        SudokuBoard sudoku = new SudokuBoard(solver);
+        sudoku.solveGame();
+        SudokuBoard sudoku1 = new SudokuBoard(solver);
+        sudoku1.solveGame();
+        assertFalse(sudoku.equals(sudoku1));
+        assertFalse(sudoku.equals(null));
+        assertFalse(sudoku.equals(solver));
+        assertTrue(sudoku.equals(sudoku));
+        assertFalse(sudoku.getRow(0).equals(sudoku1.getRow(0)));
+        assertFalse(sudoku.getRow(0).equals(null));
+        assertFalse(sudoku.getRow(0).equals(sudoku1.getColumn(0)));
+        assertTrue(sudoku.getRow(0).equals(sudoku.getRow(0)));
+    }
+
+    @Test
+    void testToString() {
+        SudokuSolver solver = new BacktrackingSudokuSolver();
+        SudokuBoard sudoku = new SudokuBoard(solver);
+        sudoku.solveGame();
+        assertEquals(String.valueOf(sudoku), sudoku.toString());
+        assertEquals(String.valueOf(sudoku.getRow(0)), sudoku.getRow(0).toString());
+    }
+
+    @Test
+    void testHashCode() {
+        SudokuSolver solver = new BacktrackingSudokuSolver();
+        SudokuBoard sudoku = new SudokuBoard(solver);
+        sudoku.solveGame();
+        SudokuBoard sudoku1 = new SudokuBoard(solver);
+        sudoku1.solveGame();
+        assertNotEquals(sudoku.hashCode(), sudoku1.hashCode());
+        assertNotEquals(sudoku.getRow(0).hashCode(), sudoku.getRow(1).hashCode());
+    }
 }
