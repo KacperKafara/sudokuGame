@@ -170,5 +170,18 @@ class SudokuBoardTest {
         sudoku1.solveGame();
         assertNotEquals(sudoku.hashCode(), sudoku1.hashCode());
         assertNotEquals(sudoku.getRow(0).hashCode(), sudoku.getRow(1).hashCode());
+
+        if (sudoku.getValue(0, 0) == 1) {
+            sudoku.setValue(0, 0, 2);
+            sudoku1.setValue(0, 0, 2);
+        } else {
+            sudoku.setValue(0, 0, 1);
+            sudoku1.setValue(0, 0, 1);
+        }
+
+        assertTrue(sudoku.getRow(0).getRow().get(0).equals(sudoku1.getRow(0).getRow().get(0)));
+        assertEquals(sudoku.getRow(0).getRow().get(0).hashCode(),
+                sudoku1.getRow(0).getRow().get(0).hashCode());
+
     }
 }
