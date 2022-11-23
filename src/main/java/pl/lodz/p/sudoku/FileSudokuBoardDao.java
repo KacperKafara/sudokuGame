@@ -1,10 +1,19 @@
 package pl.lodz.p.sudoku;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
-public class FileSudokuBoardDao implements Dao<SudokuBoard> {
+public class FileSudokuBoardDao implements Dao<SudokuBoard>, AutoCloseable {
 
     private String fileName;
+    private FileInputStream fis;
+    private ObjectInputStream ois;
+    private FileOutputStream fos;
+    private ObjectOutputStream oos;
 
     public FileSudokuBoardDao(String fileName) {
         this.fileName = fileName;
@@ -14,8 +23,8 @@ public class FileSudokuBoardDao implements Dao<SudokuBoard> {
     public SudokuBoard read() {
         SudokuBoard result = null;
         try {
-            FileInputStream fis = new FileInputStream(fileName);
-            ObjectInputStream ois = new ObjectInputStream(fis);
+            fis = new FileInputStream(fileName);
+            ois = new ObjectInputStream(fis);
             result = (SudokuBoard) ois.readObject();
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
@@ -31,15 +40,26 @@ public class FileSudokuBoardDao implements Dao<SudokuBoard> {
     @Override
     public void write(SudokuBoard obj) {
         try {
-            FileOutputStream fos = new FileOutputStream(fileName);
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            fos = new FileOutputStream(fileName);
+            oos = new ObjectOutputStream(fos);
             oos.writeObject(obj);
-            oos.close();
-            fos.close();
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public void close() throws Exception {
+        try {
+            fis.close();
+            fos.close();
+            ois.close();
+            oos.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }
