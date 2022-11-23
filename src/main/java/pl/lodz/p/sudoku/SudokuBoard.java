@@ -1,5 +1,6 @@
 package pl.lodz.p.sudoku;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -7,7 +8,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class SudokuBoard {
+public class SudokuBoard implements Serializable {
 
     private List<SudokuField> board = Arrays.asList(new SudokuField[81]);
     private List<SudokuRow> row = Arrays.asList(new SudokuRow[9]);

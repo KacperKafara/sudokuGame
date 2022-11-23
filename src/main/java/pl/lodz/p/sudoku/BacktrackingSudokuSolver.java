@@ -1,6 +1,8 @@
 package pl.lodz.p.sudoku;
 
-public class BacktrackingSudokuSolver implements SudokuSolver {
+import java.io.Serializable;
+
+public class BacktrackingSudokuSolver implements SudokuSolver, Serializable {
 
     SudokuBoard board;
 

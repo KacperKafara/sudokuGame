@@ -2,7 +2,6 @@ package pl.lodz.p.sudoku;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -150,6 +149,9 @@ class SudokuBoardTest {
         assertFalse(sudoku.getRow(0).equals(null));
         assertFalse(sudoku.getRow(0).equals(sudoku1.getColumn(0)));
         assertTrue(sudoku.getRow(0).equals(sudoku.getRow(0)));
+        assertTrue(sudoku.getBoard().get(0).equals(sudoku.getBoard().get(0)));
+        assertFalse(sudoku.getBoard().get(0).equals(null));
+        assertFalse(sudoku.getBoard().get(0).equals(sudoku.getBoard()));
     }
 
     @Test

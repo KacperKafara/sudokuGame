@@ -1,5 +1,6 @@
 package pl.lodz.p.sudoku;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -8,7 +9,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class PartOfTheBoard {
+public class PartOfTheBoard implements Serializable {
     protected List<SudokuField> fields = Arrays.asList(new SudokuField[9]);
     
     public boolean verify() {

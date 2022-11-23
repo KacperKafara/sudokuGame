@@ -43,6 +43,8 @@ public class FileSudokuBoardDao implements Dao<SudokuBoard>, AutoCloseable {
             fos = new FileOutputStream(fileName);
             oos = new ObjectOutputStream(fos);
             oos.writeObject(obj);
+            fos.close();
+            oos.close();
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
@@ -54,9 +56,9 @@ public class FileSudokuBoardDao implements Dao<SudokuBoard>, AutoCloseable {
     public void close() throws Exception {
         try {
             fis.close();
-            fos.close();
+
             ois.close();
-            oos.close();
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

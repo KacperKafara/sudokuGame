@@ -1,5 +1,6 @@
 package pl.lodz.p.sudoku;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class SudokuBox extends PartOfTheBoard {
