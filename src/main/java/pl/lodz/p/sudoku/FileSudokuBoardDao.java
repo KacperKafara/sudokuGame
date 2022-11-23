@@ -1,20 +1,31 @@
 package pl.lodz.p.sudoku;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 
-public class FileSudokuBoardDao implements Dao<SudokuBoard>{
+public class FileSudokuBoardDao implements Dao<SudokuBoard> {
 
     private String fileName;
+
     public FileSudokuBoardDao(String fileName) {
         this.fileName = fileName;
     }
 
     @Override
     public SudokuBoard read() {
-        return null;
+        SudokuBoard result = null;
+        try {
+            FileInputStream fis = new FileInputStream(fileName);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            result = (SudokuBoard) ois.readObject();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        return result;
     }
 
     @Override
