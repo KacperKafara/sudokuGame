@@ -60,6 +60,5 @@ public class FileSudokuBoardDao implements Dao<SudokuBoard>, AutoCloseable {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
     }
 }
