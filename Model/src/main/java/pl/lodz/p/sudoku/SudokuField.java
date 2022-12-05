@@ -47,7 +47,7 @@ public class SudokuField implements Serializable, Comparable<SudokuField> {
     @Override
     public int compareTo(SudokuField o) {
         if(o == null) {
-            throw  new NullPointerException();
+            throw new NullPointerException();
         }
         if (value > o.value){
             return 1;
