@@ -4,14 +4,14 @@ import java.util.Random;
 
 public enum DifficultyLevel {
 
-    EASY (10),
-    MEDIUM (30),
-    HARD (50);
+    EASY(10),
+    MEDIUM(30),
+    HARD(50);
 
     public int numberOfFieldsToRemove;
 
     DifficultyLevel(int numberOfFieldsToRemove) {
-        this.numberOfFieldsToRemove=numberOfFieldsToRemove;
+        this.numberOfFieldsToRemove = numberOfFieldsToRemove;
     }
 
     public void removeFields(final SudokuBoard board) {
