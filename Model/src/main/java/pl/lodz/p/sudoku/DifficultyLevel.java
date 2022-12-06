@@ -1,13 +1,17 @@
 package pl.lodz.p.sudoku;
 
-import java.sql.SQLOutput;
 import java.util.Random;
 
-public class DifficultyLevel {
-    protected int numberOfFieldsToRemove;
+public enum DifficultyLevel {
 
-    public DifficultyLevel(int numberOfFieldsToRemove) {
-        this.numberOfFieldsToRemove = numberOfFieldsToRemove;
+    EASY (10),
+    MEDIUM (30),
+    HARD (50);
+
+    public int numberOfFieldsToRemove;
+
+    DifficultyLevel(int numberOfFieldsToRemove) {
+        this.numberOfFieldsToRemove=numberOfFieldsToRemove;
     }
 
     public void removeFields(final SudokuBoard board) {
