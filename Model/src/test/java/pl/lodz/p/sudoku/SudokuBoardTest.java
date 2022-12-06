@@ -186,4 +186,22 @@ class SudokuBoardTest {
                 sudoku1.getRow(0).getRow().get(0).hashCode());
 
     }
+
+    @Test
+    void testRemoveFields() {
+        SudokuSolver solver = new BacktrackingSudokuSolver();
+        SudokuBoard sudoku = new SudokuBoard(solver);
+        sudoku.solveGame();
+        DifficultyLevel difficultyLevel = new DifficultyLevelEasy();
+        difficultyLevel.removeFields(sudoku);
+        int sumOfZeros=0;
+        for(int i=0;i<9;i++) {
+            for(int j=0;j<9;j++) {
+                if (sudoku.getValue(i,j)==0) {
+                    sumOfZeros++;
+                }
+            }
+        }
+        assertEquals(sumOfZeros,10);
+    }
 }

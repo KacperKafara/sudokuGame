@@ -16,9 +16,9 @@ public class DifficultyLevel {
             int x = 0;
             int y = 0;
             do {
-                x = rand.nextInt(9) + 1;
-                y = rand.nextInt(9) + 1;
-            } while (board.getValue(x, y) != 0);
+                x = rand.nextInt(9);
+                y = rand.nextInt(9);
+            } while (board.getValue(x, y) == 0);
             board.setValue(x, y, 0);
         }
     }
