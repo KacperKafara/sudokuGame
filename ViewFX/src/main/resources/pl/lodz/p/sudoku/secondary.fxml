@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.Pane?>
 
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="518.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="518.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.lodz.p.sudoku.SecondaryController">
    <children>
       <ChoiceBox fx:id="field28" layoutX="75.0" layoutY="184.0" prefHeight="50.0" prefWidth="50.0" />
       <ChoiceBox fx:id="field29" layoutX="125.0" layoutY="184.0" prefHeight="50.0" prefWidth="50.0" />
