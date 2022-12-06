@@ -1,9 +1,9 @@
 package pl.lodz.p.sudoku;
 
+import java.sql.SQLOutput;
 import java.util.Random;
 
 public class DifficultyLevel {
-
     protected int numberOfFieldsToRemove;
 
     public DifficultyLevel(int numberOfFieldsToRemove) {
@@ -11,10 +11,10 @@ public class DifficultyLevel {
     }
 
     public void removeFields(final SudokuBoard board) {
+        Random rand = new Random();
+        int x = 0;
+        int y = 0;
         for (int i = 0; i < numberOfFieldsToRemove; i++) {
-            Random rand = new Random();
-            int x = 0;
-            int y = 0;
             do {
                 x = rand.nextInt(9);
                 y = rand.nextInt(9);

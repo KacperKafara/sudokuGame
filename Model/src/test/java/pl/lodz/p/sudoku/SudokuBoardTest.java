@@ -192,16 +192,17 @@ class SudokuBoardTest {
         SudokuSolver solver = new BacktrackingSudokuSolver();
         SudokuBoard sudoku = new SudokuBoard(solver);
         sudoku.solveGame();
-        DifficultyLevel difficultyLevel = new DifficultyLevelEasy();
+        DifficultyLevel difficultyLevel = new DifficultyLevelHard();
         difficultyLevel.removeFields(sudoku);
         int sumOfZeros=0;
-        for(int i=0;i<9;i++) {
-            for(int j=0;j<9;j++) {
-                if (sudoku.getValue(i,j)==0) {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (sudoku.getValue(i, j) == 0) {
                     sumOfZeros++;
                 }
             }
         }
-        assertEquals(sumOfZeros,10);
+
+        assertEquals(sumOfZeros,50);
     }
 }

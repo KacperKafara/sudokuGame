@@ -19,7 +19,7 @@ public class PrimaryController {
     @FXML
     private void play() throws IOException {
 
-        DifficultyLevel difficultyLevel = null;
+        DifficultyLevel difficultyLevel = new DifficultyLevelEasy();
 
         switch (difficulty) {
             case(0): {
@@ -44,7 +44,7 @@ public class PrimaryController {
         sudoku.solveGame();
 
         difficultyLevel.removeFields(sudoku);
-
+        //To nie działa nie wiem czemu
 
         App.setRoot("secondary");
     }
