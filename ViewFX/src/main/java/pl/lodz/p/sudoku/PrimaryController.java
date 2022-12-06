@@ -1,6 +1,5 @@
 package pl.lodz.p.sudoku;
 
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.RadioButton;
@@ -19,23 +18,13 @@ public class PrimaryController {
     @FXML
     private void play() throws IOException {
 
-        DifficultyLevel difficultyLevel = DifficultyLevel.EASY;
+        DifficultyLevel difficultyLevel = null;
 
         switch (difficulty) {
-            case(0): {
-                difficultyLevel = DifficultyLevel.EASY;
-                break;
-            }
-            case(1): {
-                difficultyLevel = DifficultyLevel.MEDIUM;
-                break;
-            }
-            case(2): {
-                difficultyLevel = DifficultyLevel.HARD;
-                break;
-            }
-            default: {
-                break;
+            case (0) -> difficultyLevel = DifficultyLevel.EASY;
+            case (1) -> difficultyLevel = DifficultyLevel.MEDIUM;
+            case (2) -> difficultyLevel = DifficultyLevel.HARD;
+            default -> {
             }
         }
 
