@@ -14,10 +14,10 @@ public class SudokuColumn extends PartOfTheBoard implements Cloneable {
 
     @Override
     public SudokuColumn clone() {
-        try {
-            return (SudokuColumn) super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new AssertionError();
+        SudokuColumn cl = new SudokuColumn();
+        for (int i = 0; i < 9; i++) {
+            cl.setColumn(fields.get(i).clone(), i);
         }
+        return cl;
     }
 }

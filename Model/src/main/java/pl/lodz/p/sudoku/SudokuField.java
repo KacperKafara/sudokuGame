@@ -5,7 +5,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class SudokuField implements Serializable, Comparable<SudokuField> {
+public class SudokuField implements Serializable, Comparable<SudokuField>, Cloneable {
 
     private int value = 0;
 
@@ -47,7 +47,7 @@ public class SudokuField implements Serializable, Comparable<SudokuField> {
     @Override
     public int compareTo(SudokuField o) {
         if (o == null) {
-            throw  new NullPointerException();
+            throw new NullPointerException();
         }
         if (value > o.value) {
             return 1;
@@ -55,6 +55,15 @@ public class SudokuField implements Serializable, Comparable<SudokuField> {
             return -1;
         } else {
             return 0;
+        }
+    }
+
+    @Override
+    public SudokuField clone() {
+        try {
+            return (SudokuField) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
         }
     }
 }

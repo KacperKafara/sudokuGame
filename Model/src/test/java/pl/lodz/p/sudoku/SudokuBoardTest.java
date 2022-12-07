@@ -99,10 +99,18 @@ class SudokuBoardTest {
             assertNotEquals(1, sudoku.getValue(0, 0));
             sudoku.setValue(0, 0, 1);
             assertEquals(1, sudoku.getValue(0, 0));
+            SudokuField f1 = new SudokuField();
+            f1.setFieldValue(2);
+            sudoku.setField(0, 0, f1);
+            assertEquals(2, sudoku.getValue(0, 0));
         } else {
             assertEquals(1, sudoku.getValue(0, 0));
             sudoku.setValue(0, 0, 2);
             assertEquals(2, sudoku.getValue(0, 0));
+            SudokuField f1 = new SudokuField();
+            f1.setFieldValue(1);
+            sudoku.setField(0, 0, f1);
+            assertEquals(1, sudoku.getValue(0, 0));
         }
     }
 
