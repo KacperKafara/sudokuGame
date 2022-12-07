@@ -1,1 +1,2 @@
-Sudoku
+Sudoku <br />
+License: GPL

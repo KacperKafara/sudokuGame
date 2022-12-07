@@ -109,6 +109,10 @@ public class SudokuBoard implements Serializable, Cloneable {
         board.set(x * 9 + y, field);
     }
 
+    public SudokuField getField(int x, int y) {
+        return board.get(x * 9 + y);
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this)

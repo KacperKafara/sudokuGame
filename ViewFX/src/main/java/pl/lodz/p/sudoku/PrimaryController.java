@@ -2,6 +2,7 @@ package pl.lodz.p.sudoku;
 
 import java.io.IOException;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.RadioButton;
 
 public class PrimaryController {
@@ -34,7 +35,10 @@ public class PrimaryController {
 
         difficultyLevel.removeFields(sudoku);
 
-        App.setRoot("secondary");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("secondary.fxml"));
+        App.setRoot(loader);
+        SecondaryController sc = loader.getController();
+        sc.draw(sudoku);
     }
 
     @FXML

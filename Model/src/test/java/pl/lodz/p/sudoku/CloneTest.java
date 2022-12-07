@@ -62,4 +62,20 @@ public class CloneTest {
         row2.setBox(field, 7);
         assertFalse(row1.equals(row2));
     }
+
+    @Test
+    void cloneBoardTest() {
+        SudokuSolver solver = new BacktrackingSudokuSolver();
+        SudokuBoard sudoku = new SudokuBoard(solver);
+        SudokuBoard sudoku1 = sudoku.clone();
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                assertTrue(sudoku.getField(i, j).equals(sudoku1.getField(i, j)));
+            }
+        }
+        SudokuField field = new SudokuField();
+        field.setFieldValue(1);
+        sudoku1.setField(0, 0, field);
+        assertFalse(sudoku.getField(0, 0).equals(sudoku1.getField(0, 0)));
+    }
 }
