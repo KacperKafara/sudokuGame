@@ -1,13 +1,8 @@
 package pl.lodz.p.sudoku;
 
 import java.io.IOException;
-
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 
 public class PrimaryController {

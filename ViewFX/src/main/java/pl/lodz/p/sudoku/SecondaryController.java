@@ -1,10 +1,9 @@
 package pl.lodz.p.sudoku;
 
-import java.awt.event.ActionEvent;
+import javafx.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.ObservableList;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.ChoiceBox;
@@ -17,7 +16,7 @@ public class SecondaryController {
 
     ObservableList<Node> nodes;
 
-    List<ChoiceBox> choiceBoxes = new ArrayList<>();
+    List<ChoiceBox<String>> choiceBoxes = new ArrayList<>();
 
     SudokuBoard sudoku;
 
@@ -39,10 +38,16 @@ public class SecondaryController {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 String text = Integer.toString(sudoku.getValue(i, j));
-                choiceBoxes.get(j * 9 + i).setValue(text);
+                ChoiceBox<String> box = choiceBoxes.get(j * 9 + i);
+                box.setValue(text);
                 if (Integer.parseInt(text) != 0) {
                     choiceBoxes.get(j * 9 + i).setDisable(true);
                 }
+                int finalI = i;
+                int finalJ = j;
+                box.setOnAction((e) -> {
+                    sudoku.setValue(finalI, finalJ, Integer.parseInt(box.getValue()));
+                });
             }
         }
     }
