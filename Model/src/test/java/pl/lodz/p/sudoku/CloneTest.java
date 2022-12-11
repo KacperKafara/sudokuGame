@@ -73,9 +73,11 @@ public class CloneTest {
                 assertTrue(sudoku.getField(i, j).equals(sudoku1.getField(i, j)));
             }
         }
+        assertTrue(sudoku.equals(sudoku1));
         SudokuField field = new SudokuField();
-        field.setFieldValue(1);
+        field.setFieldValue(0);
         sudoku1.setField(0, 0, field);
         assertFalse(sudoku.getField(0, 0).equals(sudoku1.getField(0, 0)));
+        assertFalse(sudoku.equals(sudoku1));
     }
 }
