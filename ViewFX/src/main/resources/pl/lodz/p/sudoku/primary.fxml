@@ -35,7 +35,12 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Button fx:id="playButton" layoutX="246.0" layoutY="349.0" mnemonicParsing="false" onAction="#play" prefHeight="51.0" prefWidth="102.0" text="PLAY!">
+            <Button fx:id="playButton" layoutX="131.0" layoutY="347.0" mnemonicParsing="false" onAction="#play" prefHeight="51.0" prefWidth="102.0" text="PLAY!">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Button>
+            <Button fx:id="readFromFileButton" layoutX="299.0" layoutY="347.0" mnemonicParsing="false" onAction="#readFromFile" prefHeight="51.0" prefWidth="226.0" text="Wczytaj z pliku">
                <font>
                   <Font size="24.0" />
                </font>

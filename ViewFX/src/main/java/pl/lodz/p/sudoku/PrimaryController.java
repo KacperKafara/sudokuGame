@@ -1,8 +1,13 @@
 package pl.lodz.p.sudoku;
 
 import java.io.IOException;
+
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 
 public class PrimaryController {
@@ -13,6 +18,8 @@ public class PrimaryController {
     private RadioButton difficulty2;
     @FXML
     private RadioButton difficulty3;
+
+    private SudokuBoard sudoku;
 
     private int difficulty = 0;
 
@@ -30,11 +37,22 @@ public class PrimaryController {
         }
 
         SudokuSolver solver = new BacktrackingSudokuSolver();
-        SudokuBoard sudoku = new SudokuBoard(solver);
+        sudoku = new SudokuBoard(solver);
         sudoku.solveGame();
 
         difficultyLevel.removeFields(sudoku);
 
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("secondary.fxml"));
+        App.setRoot(loader);
+        SecondaryController sc = loader.getController();
+        sc.draw(sudoku);
+    }
+
+    @FXML
+    private void readFromFile() throws IOException {
+        SudokuBoardDaoFactory factory = new SudokuBoardDaoFactory();
+        FileSudokuBoardDao file = (FileSudokuBoardDao) factory.createFileSudokuBoardDao("plik");
+        sudoku = file.read();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("secondary.fxml"));
         App.setRoot(loader);
         SecondaryController sc = loader.getController();
