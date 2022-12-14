@@ -13,11 +13,15 @@ public class PartOfTheBoard implements Serializable {
     protected List<SudokuField> fields = Arrays.asList(new SudokuField[9]);
     
     public boolean verify() {
+        int counter = 0;
         Set<Integer> fieldsToVerify = new HashSet<>();
         for (int i = 0; i < 9; i++) {
-            fieldsToVerify.add(fields.get(i).getFieldValue());
+            if (fields.get(i).getFieldValue() != 0) {
+                fieldsToVerify.add(fields.get(i).getFieldValue());
+                counter++;
+            }
         }
-        return fieldsToVerify.size() == 9;
+        return fieldsToVerify.size() == counter;
     }
 
     @Override

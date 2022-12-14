@@ -122,7 +122,7 @@ class SudokuBoardTest {
         assertTrue(sudoku.getRow(0).verify());
         assertTrue(sudoku.getColumn(0).verify());
         assertTrue(sudoku.getBox(0, 0).verify());
-        if(sudoku.getValue(0, 0) != 1) {
+        if (sudoku.getValue(0, 0) != 1) {
             sudoku.setValue(0, 0, 1);
             assertFalse(sudoku.getRow(0).verify());
         } else {
