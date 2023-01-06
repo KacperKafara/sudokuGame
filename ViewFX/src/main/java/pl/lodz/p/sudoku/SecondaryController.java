@@ -3,7 +3,9 @@ package pl.lodz.p.sudoku;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.UnaryOperator;
-
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.adapter.JavaBeanIntegerProperty;
+import javafx.beans.property.adapter.JavaBeanIntegerPropertyBuilder;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -11,6 +13,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.layout.GridPane;
+import javafx.util.StringConverter;
+import javafx.util.converter.NumberStringConverter;
 
 public class SecondaryController {
 
@@ -22,6 +26,7 @@ public class SecondaryController {
     List<TextField> textFields = new ArrayList<>();
 
     SudokuBoard sudoku;
+    List<IntegerProperty> fieldValueProperty = new ArrayList<>();
 
     private void setupTextField(TextField textField) {
         UnaryOperator<TextFormatter.Change> filter = change -> {
@@ -36,7 +41,7 @@ public class SecondaryController {
         textField.setTextFormatter(textFormatter);
     }
 
-    public void draw(SudokuBoard sudoku) {
+    public void draw(SudokuBoard sudoku) throws NoSuchMethodException {
         this.sudoku = sudoku;
         nodes = gridPane.getChildren();
         for (Node n : nodes) {
@@ -48,6 +53,20 @@ public class SecondaryController {
         for (TextField field : textFields) {
             setupTextField(field);
         }
+
+        for(int i = 0; i < 9; i++) {
+            for(int j = 0; j < 9; j++) {
+                JavaBeanIntegerProperty pr = JavaBeanIntegerPropertyBuilder.create().bean(this.sudoku.getField(i, j)).name("fieldValue").build();
+                StringConverter<Number> converter = new NumberStringConverter();
+                textFields.get(i * 9 + j).textProperty().bindBidirectional(pr, converter);
+            }
+        }
+//        for (int i = 0; i < 9; i++) {
+//            for (int j = 0; j < 9; j++) {
+//                fieldValueProperty.set(i * 9 + j, JavaBeanIntegerPropertyBuilder.create().bean(this.sudoku.getField(i, j)).name("value").build());
+////                textFields.get(i * 9 + j).textProperty().bindBidirectional(fieldValueProperty.get(i * 9 + j));
+//            }
+//        }
 
 //        for (int i = 0; i < 9; i++) {
 //            for (int j = 0; j < 9; j++) {

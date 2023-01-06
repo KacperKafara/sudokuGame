@@ -19,7 +19,7 @@ public class PrimaryController {
     private int difficulty = 0;
 
     @FXML
-    private void play() throws IOException {
+    private void play() throws IOException, NoSuchMethodException {
 
         DifficultyLevel difficultyLevel = null;
 
@@ -44,7 +44,7 @@ public class PrimaryController {
     }
 
     @FXML
-    private void readFromFile() throws IOException {
+    private void readFromFile() throws IOException, NoSuchMethodException {
         SudokuBoardDaoFactory factory = new SudokuBoardDaoFactory();
         FileSudokuBoardDao file = (FileSudokuBoardDao) factory.createFileSudokuBoardDao("plik");
         sudoku = file.read();
