@@ -3,9 +3,10 @@ package pl.lodz.p.sudoku;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.UnaryOperator;
-import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.adapter.JavaBeanIntegerProperty;
 import javafx.beans.property.adapter.JavaBeanIntegerPropertyBuilder;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -26,7 +27,6 @@ public class SecondaryController {
     List<TextField> textFields = new ArrayList<>();
 
     SudokuBoard sudoku;
-    List<IntegerProperty> fieldValueProperty = new ArrayList<>();
 
     private void setupTextField(TextField textField) {
         UnaryOperator<TextFormatter.Change> filter = change -> {
@@ -54,47 +54,36 @@ public class SecondaryController {
             setupTextField(field);
         }
 
-        for(int i = 0; i < 9; i++) {
-            for(int j = 0; j < 9; j++) {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
                 JavaBeanIntegerProperty pr = JavaBeanIntegerPropertyBuilder.create().bean(this.sudoku.getField(i, j)).name("fieldValue").build();
                 StringConverter<Number> converter = new NumberStringConverter();
                 textFields.get(i * 9 + j).textProperty().bindBidirectional(pr, converter);
             }
         }
-//        for (int i = 0; i < 9; i++) {
-//            for (int j = 0; j < 9; j++) {
-//                fieldValueProperty.set(i * 9 + j, JavaBeanIntegerPropertyBuilder.create().bean(this.sudoku.getField(i, j)).name("value").build());
-////                textFields.get(i * 9 + j).textProperty().bindBidirectional(fieldValueProperty.get(i * 9 + j));
-//            }
-//        }
 
-//        for (int i = 0; i < 9; i++) {
-//            for (int j = 0; j < 9; j++) {
-//                String text = Integer.toString(sudoku.getValue(i, j));
-//                ChoiceBox<String> box = choiceBoxes.get(i * 9 + j);
-//                box.setValue(text);
-//                if (Integer.parseInt(text) != 0) {
-//                    choiceBoxes.get(i * 9 + j).setDisable(true);
-//                }
-//                int finalI = i;
-//                int finalJ = j;
-//                box.setOnAction((e) -> {
-//                    sudoku.setValue(finalI, finalJ, Integer.parseInt(box.getValue()));
-//                    if (!sudoku.getBox(finalI, finalJ).verify()
-//                            || !sudoku.getRow(finalJ).verify()
-//                            || !sudoku.getColumn(finalI).verify()) {
-//                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//                        alert.setTitle("Nieprawidłowa wartość!");
-//                        alert.setHeaderText("Nieprawidłowa wartość!");
-//                        alert.setContentText("Wprowadziłeś wartość która już pojawiła się \n"
-//                                + "w danym rzędzie, boksie lub kolumnie!");
-//                        alert.showAndWait();
-//                        sudoku.setValue(finalI, finalJ, 0);
-//                        box.setValue("0");
-//                    }
-//                });
-//            }
-//        }
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                int finalI = i;
+                int finalJ = j;
+                textFields.get(i * 9 + j).textProperty().addListener(new ChangeListener<String>() {
+                    @Override
+                    public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                        if (!sudoku.getBox(finalI, finalJ).verify()
+                            || !sudoku.getRow(finalJ).verify()
+                            || !sudoku.getColumn(finalI).verify()) {
+                            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                            alert.setTitle("Nieprawidłowa wartość!");
+                            alert.setHeaderText("Nieprawidłowa wartość!");
+                            alert.setContentText("Wprowadziłeś wartość która już pojawiła się \n"
+                                    + "w danym rzędzie, boksie lub kolumnie!");
+                            alert.showAndWait();
+                            textFields.get(finalI * 9 + finalJ).textProperty().setValue(oldValue);
+                        }
+                    }
+                });
+            }
+        }
     }
 
     @FXML
