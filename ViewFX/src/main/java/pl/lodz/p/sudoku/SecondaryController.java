@@ -56,7 +56,9 @@ public class SecondaryController {
 
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                JavaBeanIntegerProperty pr = JavaBeanIntegerPropertyBuilder.create().bean(this.sudoku.getField(i, j)).name("fieldValue").build();
+                JavaBeanIntegerProperty pr = JavaBeanIntegerPropertyBuilder.create()
+                        .bean(this.sudoku.getField(i, j))
+                        .name("fieldValue").build();
                 StringConverter<Number> converter = new NumberStringConverter();
                 textFields.get(i * 9 + j).textProperty().bindBidirectional(pr, converter);
             }
@@ -66,9 +68,11 @@ public class SecondaryController {
             for (int j = 0; j < 9; j++) {
                 int finalI = i;
                 int finalJ = j;
-                textFields.get(i * 9 + j).textProperty().addListener(new ChangeListener<String>() {
+                textFields.get(i * 9 + j).textProperty()
+                        .addListener(new ChangeListener<String>() {
                     @Override
-                    public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                    public void changed(ObservableValue<? extends String> observable,
+                                        String oldValue, String newValue) {
                         if (!sudoku.getBox(finalI, finalJ).verify()
                             || !sudoku.getRow(finalJ).verify()
                             || !sudoku.getColumn(finalI).verify()) {

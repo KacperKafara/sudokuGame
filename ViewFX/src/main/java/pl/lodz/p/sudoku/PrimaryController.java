@@ -3,7 +3,6 @@ package pl.lodz.p.sudoku;
 import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.RadioButton;
@@ -21,7 +20,7 @@ public class PrimaryController {
 
     private int difficulty = 0;
 
-    private Locale currentLocation = Locale.getDefault();
+    private static Locale defaultLocation = new Locale("pl");
 
     @FXML
     private void play() throws IOException, NoSuchMethodException {
@@ -42,7 +41,7 @@ public class PrimaryController {
 
         difficultyLevel.removeFields(sudoku);
 
-        ResourceBundle bundle = ResourceBundle.getBundle("appText", currentLocation);
+        ResourceBundle bundle = ResourceBundle.getBundle("appText", defaultLocation);
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("secondary.fxml"), bundle);
         App.setRoot(loader);
@@ -51,11 +50,21 @@ public class PrimaryController {
     }
 
     @FXML
+    private void changeLanguage() throws IOException {
+        if (PrimaryController.defaultLocation.getLanguage() == "pl") {
+            defaultLocation = new Locale("en");
+        } else {
+            defaultLocation = new Locale("pl");
+        }
+        App.setStart(defaultLocation);
+    }
+
+    @FXML
     private void readFromFile() throws IOException, NoSuchMethodException {
         SudokuBoardDaoFactory factory = new SudokuBoardDaoFactory();
         FileSudokuBoardDao file = (FileSudokuBoardDao) factory.createFileSudokuBoardDao("plik");
         sudoku = file.read();
-        ResourceBundle bundle = ResourceBundle.getBundle("appText", currentLocation);
+        ResourceBundle bundle = ResourceBundle.getBundle("appText", defaultLocation);
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("secondary.fxml"), bundle);
         App.setRoot(loader);
