@@ -1,6 +1,9 @@
 package pl.lodz.p.sudoku;
 
 import java.io.IOException;
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.RadioButton;
@@ -17,6 +20,8 @@ public class PrimaryController {
     private SudokuBoard sudoku;
 
     private int difficulty = 0;
+
+    private Locale currentLocation = Locale.getDefault();
 
     @FXML
     private void play() throws IOException, NoSuchMethodException {
@@ -37,7 +42,9 @@ public class PrimaryController {
 
         difficultyLevel.removeFields(sudoku);
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("secondary.fxml"));
+        ResourceBundle bundle = ResourceBundle.getBundle("appText", currentLocation);
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("secondary.fxml"), bundle);
         App.setRoot(loader);
         SecondaryController sc = loader.getController();
         sc.draw(sudoku);
@@ -48,7 +55,9 @@ public class PrimaryController {
         SudokuBoardDaoFactory factory = new SudokuBoardDaoFactory();
         FileSudokuBoardDao file = (FileSudokuBoardDao) factory.createFileSudokuBoardDao("plik");
         sudoku = file.read();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("secondary.fxml"));
+        ResourceBundle bundle = ResourceBundle.getBundle("appText", currentLocation);
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("secondary.fxml"), bundle);
         App.setRoot(loader);
         SecondaryController sc = loader.getController();
         sc.draw(sudoku);

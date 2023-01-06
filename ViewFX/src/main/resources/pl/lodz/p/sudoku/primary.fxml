@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.TitledPane?>
-<?import javafx.scene.control.ToggleGroup?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<TitledPane alignment="CENTER" animated="false" collapsible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="518.0" prefWidth="600.0" text="Sudoku menu" textAlignment="CENTER" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.lodz.p.sudoku.PrimaryController">
+<TitledPane alignment="CENTER" animated="false" collapsible="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="518.0" prefWidth="600.0" text="Sudoku menu" textAlignment="CENTER" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.lodz.p.sudoku.PrimaryController">
    <content>
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="518.0" prefWidth="600.0">
          <children>
-            <RadioButton fx:id="difficulty1" contentDisplay="CENTER" layoutX="236.0" layoutY="102.0" mnemonicParsing="false" onAction="#getDifficulty" prefHeight="58.0" prefWidth="126.0" selected="true" text="Easy" textAlignment="CENTER">
+            <RadioButton fx:id="difficulty1" contentDisplay="CENTER" layoutX="236.0" layoutY="102.0" mnemonicParsing="false" onAction="#getDifficulty" prefHeight="58.0" prefWidth="126.0" selected="true" text="%form.easy" textAlignment="CENTER">
                <font>
                   <Font size="20.0" />
                </font>
@@ -20,27 +16,27 @@
                   <ToggleGroup fx:id="difficultyLevel" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="difficulty2" contentDisplay="CENTER" layoutX="235.0" layoutY="181.0" mnemonicParsing="false" onAction="#getDifficulty" prefHeight="58.0" prefWidth="126.0" text="Medium" textAlignment="CENTER" toggleGroup="$difficultyLevel">
+            <RadioButton fx:id="difficulty2" contentDisplay="CENTER" layoutX="235.0" layoutY="181.0" mnemonicParsing="false" onAction="#getDifficulty" prefHeight="58.0" prefWidth="126.0" text="%form.medium" textAlignment="CENTER" toggleGroup="$difficultyLevel">
                <font>
                   <Font size="20.0" />
                </font>
             </RadioButton>
-            <RadioButton fx:id="difficulty3" contentDisplay="CENTER" layoutX="234.0" layoutY="256.0" mnemonicParsing="false" onAction="#getDifficulty" prefHeight="58.0" prefWidth="126.0" text="Sysopy" textAlignment="CENTER" toggleGroup="$difficultyLevel">
+            <RadioButton fx:id="difficulty3" contentDisplay="CENTER" layoutX="234.0" layoutY="256.0" mnemonicParsing="false" onAction="#getDifficulty" prefHeight="58.0" prefWidth="126.0" text="%form.hard" textAlignment="CENTER" toggleGroup="$difficultyLevel">
                <font>
                   <Font size="20.0" />
                </font>
             </RadioButton>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="157.0" layoutY="36.0" prefHeight="58.0" prefWidth="284.0" text="Wybierz poziom trudności" textAlignment="CENTER">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="157.0" layoutY="36.0" prefHeight="58.0" prefWidth="284.0" text="%form.level" textAlignment="CENTER">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Button fx:id="playButton" layoutX="131.0" layoutY="347.0" mnemonicParsing="false" onAction="#play" prefHeight="51.0" prefWidth="102.0" text="PLAY!">
+            <Button fx:id="playButton" layoutX="131.0" layoutY="347.0" mnemonicParsing="false" onAction="#play" prefHeight="51.0" prefWidth="150.0" text="%form.play">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button fx:id="readFromFileButton" layoutX="299.0" layoutY="347.0" mnemonicParsing="false" onAction="#readFromFile" prefHeight="51.0" prefWidth="226.0" text="Wczytaj z pliku">
+            <Button fx:id="readFromFileButton" layoutX="299.0" layoutY="347.0" mnemonicParsing="false" onAction="#readFromFile" prefHeight="51.0" prefWidth="226.0" text="%form.load">
                <font>
                   <Font size="24.0" />
                </font>
