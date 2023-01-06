@@ -2,6 +2,7 @@ package pl.lodz.p.sudoku;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 import java.util.function.UnaryOperator;
 import javafx.beans.property.adapter.JavaBeanIntegerProperty;
 import javafx.beans.property.adapter.JavaBeanIntegerPropertyBuilder;
@@ -27,6 +28,8 @@ public class SecondaryController {
     List<TextField> textFields = new ArrayList<>();
 
     SudokuBoard sudoku;
+
+    ResourceBundle bundle = ResourceBundle.getBundle("appText", PrimaryController.defaultLocation);
 
     private void setupTextField(TextField textField) {
         UnaryOperator<TextFormatter.Change> filter = change -> {
@@ -77,10 +80,9 @@ public class SecondaryController {
                             || !sudoku.getRow(finalJ).verify()
                             || !sudoku.getColumn(finalI).verify()) {
                             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                            alert.setTitle("Nieprawidłowa wartość!");
-                            alert.setHeaderText("Nieprawidłowa wartość!");
-                            alert.setContentText("Wprowadziłeś wartość która już pojawiła się \n"
-                                    + "w danym rzędzie, boksie lub kolumnie!");
+                            alert.setTitle(bundle.getString("alert.title"));
+                            alert.setHeaderText(bundle.getString("alert.header"));
+                            alert.setContentText(bundle.getString("alert.msg"));
                             alert.showAndWait();
                             textFields.get(finalI * 9 + finalJ).textProperty().setValue(oldValue);
                         }
@@ -96,8 +98,8 @@ public class SecondaryController {
         FileSudokuBoardDao file = (FileSudokuBoardDao) factory.createFileSudokuBoardDao("plik");
         file.write(sudoku);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Zapis");
-        alert.setHeaderText("Plansza została zapisana!");
+        alert.setTitle(bundle.getString("alert.save"));
+        alert.setHeaderText(bundle.getString("alert.saveMsg"));
         alert.showAndWait();
     }
 }

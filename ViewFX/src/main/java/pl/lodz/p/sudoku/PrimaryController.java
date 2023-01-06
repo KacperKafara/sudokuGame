@@ -20,7 +20,7 @@ public class PrimaryController {
 
     private int difficulty = 0;
 
-    private static Locale defaultLocation = new Locale("pl");
+    static Locale defaultLocation = new Locale("pl");
 
     @FXML
     private void play() throws IOException, NoSuchMethodException {
