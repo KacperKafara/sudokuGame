@@ -29,7 +29,7 @@ public class PrimaryController implements Initializable {
 
     static Locale defaultLocation = new Locale("pl");
 
-    private final ResourceBundle authors = new Authors();
+    private final ResourceBundle authors = ResourceBundle.getBundle("pl.lodz.p.sudoku.Authors");
 
     @FXML
     private void play() throws IOException, NoSuchMethodException {
