@@ -1,13 +1,16 @@
 package pl.lodz.p.sudoku;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 
-public class PrimaryController {
+public class PrimaryController implements Initializable {
 
     @FXML
     private RadioButton difficulty1;
@@ -15,12 +18,18 @@ public class PrimaryController {
     private RadioButton difficulty2;
     @FXML
     private RadioButton difficulty3;
+    @FXML
+    private Label author1;
+    @FXML
+    private Label author2;
 
     private SudokuBoard sudoku;
 
     private int difficulty = 0;
 
     static Locale defaultLocation = new Locale("pl");
+
+    private final ResourceBundle authors = new Authors();
 
     @FXML
     private void play() throws IOException, NoSuchMethodException {
@@ -81,5 +90,11 @@ public class PrimaryController {
         } else if (difficulty3.isSelected()) {
             difficulty = 2;
         }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        author1.setText(authors.getString("author1"));
+        author2.setText(authors.getString("author2"));
     }
 }

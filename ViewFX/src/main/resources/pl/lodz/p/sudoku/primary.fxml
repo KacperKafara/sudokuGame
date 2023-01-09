@@ -42,6 +42,9 @@
                </font>
             </Button>
             <Button fx:id="changeLanguage" layoutX="14.0" layoutY="36.0" mnemonicParsing="false" onAction="#changeLanguage" prefHeight="38.0" prefWidth="141.0" text="%form.changeLanguage" />
+            <Label fx:id="author1" layoutX="15.0" layoutY="135.0" prefHeight="25.0" prefWidth="103.0" text="Label" />
+            <Label fx:id="author2" layoutX="14.0" layoutY="160.0" prefHeight="22.0" prefWidth="105.0" text="Label" />
+            <Label layoutX="15.0" layoutY="114.0" text="%form.authors" />
 <!--            <Button fx:id="primaryButton" text="Switch to Secondary View" onAction="#switchToSecondary"/>-->
          </children></AnchorPane>
    </content>
