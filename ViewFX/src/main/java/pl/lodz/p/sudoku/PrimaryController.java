@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import org.apache.log4j.Logger;
 
 public class PrimaryController implements Initializable {
 
@@ -31,15 +32,26 @@ public class PrimaryController implements Initializable {
 
     private final ResourceBundle authors = ResourceBundle.getBundle("pl.lodz.p.sudoku.Authors");
 
+    private final Logger logger = Logger.getLogger(PrimaryController.class);
+
     @FXML
     private void play() throws IOException, NoSuchMethodException {
 
         DifficultyLevel difficultyLevel = null;
 
         switch (difficulty) {
-            case (0) -> difficultyLevel = DifficultyLevel.EASY;
-            case (1) -> difficultyLevel = DifficultyLevel.MEDIUM;
-            case (2) -> difficultyLevel = DifficultyLevel.HARD;
+            case (0) -> {
+                difficultyLevel = DifficultyLevel.EASY;
+                logger.info("Gra zaladowana na poziomie latwym");
+            }
+            case (1) -> {
+                difficultyLevel = DifficultyLevel.MEDIUM;
+                logger.info("Gra zaladowana na poziomie srednim");
+            }
+            case (2) -> {
+                difficultyLevel = DifficultyLevel.HARD;
+                logger.info("Gra zaladowana na poziomie trudnym");
+            }
             default -> {
             }
         }
@@ -65,6 +77,7 @@ public class PrimaryController implements Initializable {
         } else {
             defaultLocation = new Locale("pl");
         }
+        logger.info("Jezyk zostal zmieniony");
         App.setStart(defaultLocation);
     }
 
@@ -73,6 +86,7 @@ public class PrimaryController implements Initializable {
         SudokuBoardDaoFactory factory = new SudokuBoardDaoFactory();
         FileSudokuBoardDao file = (FileSudokuBoardDao) factory.createFileSudokuBoardDao("plik");
         sudoku = file.read();
+        logger.info("Gra zaladowana z pliku");
         ResourceBundle bundle = ResourceBundle.getBundle("appText", defaultLocation);
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("secondary.fxml"), bundle);

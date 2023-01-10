@@ -17,6 +17,7 @@ import javafx.scene.control.TextFormatter;
 import javafx.scene.layout.GridPane;
 import javafx.util.StringConverter;
 import javafx.util.converter.NumberStringConverter;
+import org.apache.log4j.Logger;
 
 public class SecondaryController {
 
@@ -30,6 +31,7 @@ public class SecondaryController {
     SudokuBoard sudoku;
 
     ResourceBundle bundle = ResourceBundle.getBundle("appText", PrimaryController.defaultLocation);
+    private final Logger logger = Logger.getLogger(SecondaryController.class);
 
     private void setupTextField(TextField textField) {
         UnaryOperator<TextFormatter.Change> filter = change -> {
@@ -100,6 +102,7 @@ public class SecondaryController {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(bundle.getString("alert.save"));
         alert.setHeaderText(bundle.getString("alert.saveMsg"));
+        logger.info("Gra zostala zapisana do pliku");
         alert.showAndWait();
     }
 }
