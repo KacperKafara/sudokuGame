@@ -88,7 +88,7 @@ public class PrimaryController implements Initializable {
     }
 
     @FXML
-    private void readFromFile() throws IOException, NoSuchMethodException, FileNotFoundException, MyException {
+    private void readFromFile() throws IOException, NoSuchMethodException, MyException {
         try {
             SudokuBoardDaoFactory factory = new SudokuBoardDaoFactory();
             FileSudokuBoardDao file = (FileSudokuBoardDao) factory.createFileSudokuBoardDao("plik");

@@ -96,7 +96,7 @@ public class SecondaryController {
     }
 
     @FXML
-    private void saveToFile() throws FileNotFoundException {
+    private void saveToFile() throws MyException {
         SudokuBoardDaoFactory factory = new SudokuBoardDaoFactory();
         FileSudokuBoardDao file = (FileSudokuBoardDao) factory.createFileSudokuBoardDao("plik");
         file.write(sudoku);
