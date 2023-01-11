@@ -13,7 +13,7 @@ public class SudokuRow extends PartOfTheBoard implements Cloneable {
     }
 
     @Override
-    public SudokuRow clone() {
+    public SudokuRow clone() throws CloneNotSupportedException {
         SudokuRow cl = new SudokuRow();
         for (int i = 0; i < 9; i++) {
             cl.setRow(fields.get(i).clone(), i);

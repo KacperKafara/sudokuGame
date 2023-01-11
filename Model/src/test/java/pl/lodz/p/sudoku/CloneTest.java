@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CloneTest {
 
     @Test
-    void cloneFieldTest() {
+    void cloneFieldTest() throws CloneNotSupportedException {
         SudokuField f1 = new SudokuField();
         f1.setFieldValue(1);
         SudokuField f2 = f1.clone();
@@ -16,7 +16,7 @@ public class CloneTest {
     }
 
     @Test
-    void cloneRowTest() {
+    void cloneRowTest() throws CloneNotSupportedException {
         SudokuRow row1 = new SudokuRow();
         for (int i = 1; i < 10; i++) {
             SudokuField field = new SudokuField();
@@ -32,7 +32,7 @@ public class CloneTest {
     }
 
     @Test
-    void cloneColumnTest() {
+    void cloneColumnTest() throws CloneNotSupportedException {
         SudokuColumn row1 = new SudokuColumn();
         for (int i = 1; i < 10; i++) {
             SudokuField field = new SudokuField();
@@ -48,7 +48,7 @@ public class CloneTest {
     }
 
     @Test
-    void cloneBoxTest() {
+    void cloneBoxTest() throws CloneNotSupportedException {
         SudokuBox row1 = new SudokuBox();
         for (int i = 1; i < 10; i++) {
             SudokuField field = new SudokuField();
@@ -64,7 +64,7 @@ public class CloneTest {
     }
 
     @Test
-    void cloneBoardTest() {
+    void cloneBoardTest() throws CloneNotSupportedException {
         SudokuSolver solver = new BacktrackingSudokuSolver();
         SudokuBoard sudoku = new SudokuBoard(solver);
         SudokuBoard sudoku1 = sudoku.clone();

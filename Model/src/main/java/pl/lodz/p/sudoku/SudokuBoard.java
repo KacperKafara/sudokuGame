@@ -153,7 +153,7 @@ public class SudokuBoard implements Serializable, Cloneable {
     }
 
     @Override
-    public SudokuBoard clone() {
+    public SudokuBoard clone() throws CloneNotSupportedException {
         SudokuBoard cl = new SudokuBoard(this.sudokuSolver);
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {

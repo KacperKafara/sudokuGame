@@ -6,7 +6,7 @@ public class Authors extends ListResourceBundle {
 
     private Object[][] contents = {
             {"author1", "Kacper Kafara"},
-            {"author2", "Miłosz Kawczynski"}
+            {"author2", "Miłosz Kawczyński"}
     };
 
     @Override
