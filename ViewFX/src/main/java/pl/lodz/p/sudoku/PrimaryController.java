@@ -54,6 +54,11 @@ public class PrimaryController implements Initializable {
                 logger.info("Gra zaladowana na poziomie trudnym");
             }
             default -> {
+                try {
+                    readFromFile();
+                } catch (MyException e) {
+                    logger.info("Wyjatek");
+                }
             }
         }
 
@@ -83,17 +88,22 @@ public class PrimaryController implements Initializable {
     }
 
     @FXML
-    private void readFromFile() throws IOException, NoSuchMethodException, FileNotFoundException {
-        SudokuBoardDaoFactory factory = new SudokuBoardDaoFactory();
-        FileSudokuBoardDao file = (FileSudokuBoardDao) factory.createFileSudokuBoardDao("plik");
-        sudoku = file.read();
-        logger.info("Gra zaladowana z pliku");
-        ResourceBundle bundle = ResourceBundle.getBundle("appText", defaultLocation);
+    private void readFromFile() throws IOException, NoSuchMethodException, FileNotFoundException, MyException {
+        try {
+            SudokuBoardDaoFactory factory = new SudokuBoardDaoFactory();
+            FileSudokuBoardDao file = (FileSudokuBoardDao) factory.createFileSudokuBoardDao("plik");
+            sudoku = file.read();
+            logger.info("Gra zaladowana z pliku");
+            ResourceBundle bundle = ResourceBundle.getBundle("appText", defaultLocation);
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("secondary.fxml"), bundle);
-        App.setRoot(loader);
-        SecondaryController sc = loader.getController();
-        sc.draw(sudoku);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("secondary.fxml"), bundle);
+            App.setRoot(loader);
+            SecondaryController sc = loader.getController();
+            sc.draw(sudoku);
+        } catch (FileNotFoundException e) {
+            logger.error("Nie znaleziono pliku");
+            throw new MyException(e.getMessage());
+        }
     }
 
     @FXML
