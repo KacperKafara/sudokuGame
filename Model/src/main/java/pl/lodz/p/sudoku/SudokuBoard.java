@@ -17,7 +17,7 @@ public class SudokuBoard implements Serializable, Cloneable {
     private final SudokuSolver sudokuSolver;
 
 
-    private List<SudokuField> initBoard() {
+    private List<SudokuField> initBoard() throws IndexOutOfRangeException {
         List<SudokuField> result = Arrays.asList(new SudokuField[81]);
         List<SudokuRow> row = Arrays.asList(new SudokuRow[9]);
         List<SudokuColumn> column = Arrays.asList(new SudokuColumn[9]);
@@ -84,7 +84,7 @@ public class SudokuBoard implements Serializable, Cloneable {
         board.get(x * 9 + y).setFieldValue(value);
     }
 
-    public SudokuBoard(SudokuSolver solver) {
+    public SudokuBoard(SudokuSolver solver) throws IndexOutOfRangeException {
         this.sudokuSolver = solver;
         this.board = initBoard();
     }
@@ -154,7 +154,12 @@ public class SudokuBoard implements Serializable, Cloneable {
 
     @Override
     public SudokuBoard clone() throws CloneNotSupportedException {
-        SudokuBoard cl = new SudokuBoard(this.sudokuSolver);
+        SudokuBoard cl = null;
+        try {
+            cl = new SudokuBoard(this.sudokuSolver);
+        } catch (IndexOutOfRangeException e) {
+            throw new RuntimeException(e);
+        }
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 cl.setField(i, j, board.get(i * 9 + j).clone());

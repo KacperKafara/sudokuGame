@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class SudokuBoardTest {
 
     @Test
-    void testFillBoard() {
+    void testFillBoard() throws IndexOutOfRangeException {
         SudokuSolver solver = new BacktrackingSudokuSolver();
         SudokuBoard sudoku1 = new SudokuBoard(solver);
         SudokuBoard sudoku2 = new SudokuBoard(solver);
@@ -22,7 +22,7 @@ class SudokuBoardTest {
     }
 
     @Test
-    void testInitBoard() {
+    void testInitBoard() throws IndexOutOfRangeException {
         SudokuSolver solver = new BacktrackingSudokuSolver();
         SudokuBoard sudoku1 = new SudokuBoard(solver);
         SudokuBoard sudoku2 = new SudokuBoard(solver);
@@ -36,7 +36,7 @@ class SudokuBoardTest {
     }
 
     @Test
-    void testRowCorrect() {
+    void testRowCorrect() throws IndexOutOfRangeException {
         SudokuSolver solver = new BacktrackingSudokuSolver();
         SudokuBoard sudoku = new SudokuBoard(solver);
         sudoku.solveGame();
@@ -53,7 +53,7 @@ class SudokuBoardTest {
     }
 
     @Test
-    void testCollumnCorrect() {
+    void testCollumnCorrect() throws IndexOutOfRangeException {
         SudokuSolver solver = new BacktrackingSudokuSolver();
         SudokuBoard sudoku = new SudokuBoard(solver);
         sudoku.solveGame();
@@ -70,7 +70,7 @@ class SudokuBoardTest {
     }
 
     @Test
-    void testBoxCorrect() {
+    void testBoxCorrect() throws IndexOutOfRangeException {
         SudokuSolver solver = new BacktrackingSudokuSolver();
         SudokuBoard sudoku = new SudokuBoard(solver);
         sudoku.solveGame();
@@ -91,7 +91,7 @@ class SudokuBoardTest {
     }
 
     @Test
-    void testSetValue() {
+    void testSetValue() throws IndexOutOfRangeException {
         SudokuSolver solver = new BacktrackingSudokuSolver();
         SudokuBoard sudoku = new SudokuBoard(solver);
         sudoku.solveGame();
@@ -115,7 +115,7 @@ class SudokuBoardTest {
     }
 
     @Test
-    void testVerify() {
+    void testVerify() throws IndexOutOfRangeException {
         SudokuSolver solver = new BacktrackingSudokuSolver();
         SudokuBoard sudoku = new SudokuBoard(solver);
         sudoku.solveGame();
@@ -133,7 +133,7 @@ class SudokuBoardTest {
     }
 
     @Test
-    void testGet() {
+    void testGet() throws IndexOutOfRangeException {
         SudokuSolver solver = new BacktrackingSudokuSolver();
         SudokuBoard sudoku = new SudokuBoard(solver);
         sudoku.solveGame();
@@ -143,7 +143,7 @@ class SudokuBoardTest {
     }
 
     @Test
-    void testEquals() {
+    void testEquals() throws IndexOutOfRangeException {
         SudokuSolver solver = new BacktrackingSudokuSolver();
         SudokuBoard sudoku = new SudokuBoard(solver);
         sudoku.solveGame();
@@ -163,7 +163,7 @@ class SudokuBoardTest {
     }
 
     @Test
-    void testToString() {
+    void testToString() throws IndexOutOfRangeException {
         SudokuSolver solver = new BacktrackingSudokuSolver();
         SudokuBoard sudoku = new SudokuBoard(solver);
         sudoku.solveGame();
@@ -172,7 +172,7 @@ class SudokuBoardTest {
     }
 
     @Test
-    void testHashCode() {
+    void testHashCode() throws IndexOutOfRangeException {
         SudokuSolver solver = new BacktrackingSudokuSolver();
         SudokuBoard sudoku = new SudokuBoard(solver);
         sudoku.solveGame();
@@ -196,7 +196,7 @@ class SudokuBoardTest {
     }
 
     @Test
-    void testRemoveFields() {
+    void testRemoveFields() throws IndexOutOfRangeException {
         SudokuSolver solver = new BacktrackingSudokuSolver();
         SudokuBoard sudoku = new SudokuBoard(solver);
         sudoku.solveGame();

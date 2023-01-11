@@ -36,7 +36,7 @@ public class PrimaryController implements Initializable {
     private final Logger logger = Logger.getLogger(PrimaryController.class);
 
     @FXML
-    private void play() throws IOException, NoSuchMethodException {
+    private void play() throws IOException, NoSuchMethodException, IndexOutOfRangeException {
 
         DifficultyLevel difficultyLevel = null;
 

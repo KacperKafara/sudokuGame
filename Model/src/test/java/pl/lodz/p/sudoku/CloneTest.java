@@ -16,7 +16,7 @@ public class CloneTest {
     }
 
     @Test
-    void cloneRowTest() throws CloneNotSupportedException {
+    void cloneRowTest() throws CloneNotSupportedException, IndexOutOfRangeException {
         SudokuRow row1 = new SudokuRow();
         for (int i = 1; i < 10; i++) {
             SudokuField field = new SudokuField();
@@ -32,7 +32,7 @@ public class CloneTest {
     }
 
     @Test
-    void cloneColumnTest() throws CloneNotSupportedException {
+    void cloneColumnTest() throws CloneNotSupportedException, IndexOutOfRangeException {
         SudokuColumn row1 = new SudokuColumn();
         for (int i = 1; i < 10; i++) {
             SudokuField field = new SudokuField();
@@ -48,7 +48,7 @@ public class CloneTest {
     }
 
     @Test
-    void cloneBoxTest() throws CloneNotSupportedException {
+    void cloneBoxTest() throws CloneNotSupportedException, IndexOutOfRangeException {
         SudokuBox row1 = new SudokuBox();
         for (int i = 1; i < 10; i++) {
             SudokuField field = new SudokuField();
@@ -64,7 +64,7 @@ public class CloneTest {
     }
 
     @Test
-    void cloneBoardTest() throws CloneNotSupportedException {
+    void cloneBoardTest() throws CloneNotSupportedException, IndexOutOfRangeException {
         SudokuSolver solver = new BacktrackingSudokuSolver();
         SudokuBoard sudoku = new SudokuBoard(solver);
         SudokuBoard sudoku1 = sudoku.clone();

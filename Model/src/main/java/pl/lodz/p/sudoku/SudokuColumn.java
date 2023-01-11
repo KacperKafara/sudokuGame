@@ -8,7 +8,10 @@ public class SudokuColumn extends PartOfTheBoard implements Cloneable {
         return fields;
     }
 
-    public void setColumn(SudokuField field, int fieldInColumn) {
+    public void setColumn(SudokuField field, int fieldInColumn) throws IndexOutOfRangeException {
+        if (fieldInColumn < 0 || fieldInColumn > 8) {
+            throw new IndexOutOfRangeException("Invalid column out of range " + fieldInColumn);
+        }
         this.fields.set(fieldInColumn, field);
     }
 
@@ -16,7 +19,11 @@ public class SudokuColumn extends PartOfTheBoard implements Cloneable {
     public SudokuColumn clone() throws CloneNotSupportedException {
         SudokuColumn cl = new SudokuColumn();
         for (int i = 0; i < 9; i++) {
-            cl.setColumn(fields.get(i).clone(), i);
+            try {
+                cl.setColumn(fields.get(i).clone(), i);
+            } catch (IndexOutOfRangeException e) {
+                throw new RuntimeException(e);
+            }
         }
         return cl;
     }

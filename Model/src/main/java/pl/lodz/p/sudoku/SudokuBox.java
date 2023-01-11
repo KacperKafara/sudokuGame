@@ -8,7 +8,10 @@ public class SudokuBox extends PartOfTheBoard implements Cloneable {
         return fields;
     }
 
-    public void setBox(SudokuField field, int fieldInBox) {
+    public void setBox(SudokuField field, int fieldInBox) throws IndexOutOfRangeException {
+        if (fieldInBox < 0 || fieldInBox > 8) {
+            throw new IndexOutOfRangeException("Invalid box out of range " + fieldInBox);
+        }
         this.fields.set(fieldInBox, field);
     }
 
@@ -16,7 +19,11 @@ public class SudokuBox extends PartOfTheBoard implements Cloneable {
     public SudokuBox clone() throws CloneNotSupportedException {
         SudokuBox cl = new SudokuBox();
         for (int i = 0; i < 9; i++) {
-            cl.setBox(fields.get(i).clone(), i);
+            try {
+                cl.setBox(fields.get(i).clone(), i);
+            } catch (IndexOutOfRangeException e) {
+                throw new RuntimeException(e);
+            }
         }
         return cl;
     }
