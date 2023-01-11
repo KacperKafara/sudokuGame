@@ -1,5 +1,6 @@
 package pl.lodz.p.sudoku;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -95,7 +96,7 @@ public class SecondaryController {
     }
 
     @FXML
-    private void saveToFile() {
+    private void saveToFile() throws FileNotFoundException {
         SudokuBoardDaoFactory factory = new SudokuBoardDaoFactory();
         FileSudokuBoardDao file = (FileSudokuBoardDao) factory.createFileSudokuBoardDao("plik");
         file.write(sudoku);

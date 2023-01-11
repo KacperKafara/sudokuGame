@@ -1,8 +1,10 @@
 package pl.lodz.p.sudoku;
 
+import java.io.FileNotFoundException;
+
 public interface Dao<T> {
 
-    T read();
+    T read() throws FileNotFoundException;
 
-    void write(T obj);
+    void write(T obj) throws FileNotFoundException;
 }

@@ -1,5 +1,6 @@
 package pl.lodz.p.sudoku;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Locale;
@@ -82,7 +83,7 @@ public class PrimaryController implements Initializable {
     }
 
     @FXML
-    private void readFromFile() throws IOException, NoSuchMethodException {
+    private void readFromFile() throws IOException, NoSuchMethodException, FileNotFoundException {
         SudokuBoardDaoFactory factory = new SudokuBoardDaoFactory();
         FileSudokuBoardDao file = (FileSudokuBoardDao) factory.createFileSudokuBoardDao("plik");
         sudoku = file.read();
