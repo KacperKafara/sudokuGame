@@ -1,6 +1,6 @@
 package pl.lodz.p.sudoku;
 
-public class IndexOutOfRangeException extends Exception {
+public class IndexOutOfRangeException extends MyException {
 
     public IndexOutOfRangeException(String message) {
         super(message);

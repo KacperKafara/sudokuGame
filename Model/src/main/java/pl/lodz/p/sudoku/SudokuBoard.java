@@ -153,12 +153,12 @@ public class SudokuBoard implements Serializable, Cloneable {
     }
 
     @Override
-    public SudokuBoard clone() throws CloneNotSupportedException {
+    public SudokuBoard clone() {
         SudokuBoard cl = null;
         try {
             cl = new SudokuBoard(this.sudokuSolver);
         } catch (IndexOutOfRangeException e) {
-            throw new RuntimeException(e);
+            throw new MyRuntimeException(e.getMessage());
         }
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {

@@ -22,7 +22,7 @@ public class SudokuColumn extends PartOfTheBoard implements Cloneable {
             try {
                 cl.setColumn(fields.get(i).clone(), i);
             } catch (IndexOutOfRangeException e) {
-                throw new RuntimeException(e);
+                throw new MyRuntimeException(e.getMessage());
             }
         }
         return cl;
