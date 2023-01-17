@@ -17,10 +17,6 @@ public class JdbcSudokuBoardDao implements Dao<SudokuBoard>, AutoCloseable {
         this.dataBase.connect();
     }
 
-    public void test() throws SQLException {
-        dataBase.test();
-    }
-
     @Override
     public SudokuBoard read() {
 

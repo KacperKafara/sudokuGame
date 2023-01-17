@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class DataBase {
 
-    Connection connect() {
+    public Connection connect() {
         Connection connection = null;
         String url = "jdbc:postgresql://localhost:5432/sudoku";
         try {
@@ -15,13 +15,17 @@ public class DataBase {
         return connection;
     }
 
-    void test() throws SQLException {
-        String sql = "SELECT * FROM board";
+    public ResultSet selectFromDatabase(String query) throws SQLException {
         Connection connection = this.connect();
         Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery(sql);
-        resultSet.next();
-        System.out.println(resultSet.getString("name"));
+        ResultSet resultSet = statement.executeQuery(query);
+        return resultSet;
+    }
+
+    public void insertToDatabase(String query) throws SQLException {
+        Connection connection = this.connect();
+        Statement statement = connection.createStatement();
+        statement.executeUpdate(query);
     }
 
 
