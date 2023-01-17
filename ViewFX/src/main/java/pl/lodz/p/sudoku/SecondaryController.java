@@ -99,7 +99,7 @@ public class SecondaryController {
     private void saveToFile() throws MyException {
         SudokuBoardDaoFactory factory = new SudokuBoardDaoFactory();
         FileSudokuBoardDao file = (FileSudokuBoardDao) factory.createFileSudokuBoardDao("plik");
-        file.write(sudoku);
+        file.write(sudoku,"name");
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(bundle.getString("alert.save"));
         alert.setHeaderText(bundle.getString("alert.saveMsg"));

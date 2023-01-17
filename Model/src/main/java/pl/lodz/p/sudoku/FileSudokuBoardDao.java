@@ -20,7 +20,7 @@ public class FileSudokuBoardDao implements Dao<SudokuBoard>, AutoCloseable {
     }
 
     @Override
-    public SudokuBoard read() throws FileNotFoundException, MyException {
+    public SudokuBoard read(String name) throws FileNotFoundException, MyException {
         SudokuBoard result = null;
         try {
             fis = new FileInputStream(fileName);
@@ -34,7 +34,7 @@ public class FileSudokuBoardDao implements Dao<SudokuBoard>, AutoCloseable {
     }
 
     @Override
-    public void write(SudokuBoard obj) throws MyException {
+    public void write(SudokuBoard obj, String name) throws MyException {
         try {
             fos = new FileOutputStream(fileName);
             oos = new ObjectOutputStream(fos);

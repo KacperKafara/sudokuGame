@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 
 public interface Dao<T> {
 
-    T read() throws FileNotFoundException, MyException;
+    T read(String name) throws FileNotFoundException, MyException;
 
-    void write(T obj) throws FileNotFoundException, MyException;
+    void write(T obj, String name) throws FileNotFoundException, MyException;
 }

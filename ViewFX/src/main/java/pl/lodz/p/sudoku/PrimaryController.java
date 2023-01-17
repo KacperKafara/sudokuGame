@@ -92,7 +92,7 @@ public class PrimaryController implements Initializable {
         try {
             SudokuBoardDaoFactory factory = new SudokuBoardDaoFactory();
             FileSudokuBoardDao file = (FileSudokuBoardDao) factory.createFileSudokuBoardDao("plik");
-            sudoku = file.read();
+            sudoku = file.read("name");
             logger.info("Gra zaladowana z pliku");
             ResourceBundle bundle = ResourceBundle.getBundle("appText", defaultLocation);
 

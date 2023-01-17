@@ -18,25 +18,40 @@ public class JdbcSudokuBoardDao implements Dao<SudokuBoard>, AutoCloseable {
     }
 
     @Override
-    public SudokuBoard read() {
+    public SudokuBoard read(String name) throws IndexOutOfRangeException {
 
-        SudokuBoard result = null;
-//        for (int i = 0; i < 9; i++) {
-//            for (int j = 0; j < 9; j++) {
-//                try {
-//                    result.set(i, j, dataBase.select("SudokuBoard" + tmp, i, j));
-//                    //sudokuBoard.set(i, j, db.select("sudokuBoard", i, j));
-//                } catch (MyException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }
+        SudokuSolver solver = new BacktrackingSudokuSolver();
+        SudokuBoard result = new SudokuBoard(solver);
+        try {
+            int boardId = dataBase.selectBoardId(name);
+            for(int i=0;i<9;i++) {
+                for(int j=0;j<9;j++) {
+                    System.out.println(j+" "+i);
+                    int value = dataBase.selectValueOfField(boardId,i,j);
+                    result.setValue(i,j,value);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         return result;
     }
 
     @Override
-    public void write(SudokuBoard obj) throws FileNotFoundException, MyException {
+    public void write(SudokuBoard obj, String name) throws MyException {
 
+        try {
+            dataBase.insertNewBoardToDatabase(name);
+            int boardId = dataBase.selectBoardId(name);
+
+            for(int i=0;i<9;i++) {
+                for(int j=0;j<9;j++) {
+                    dataBase.insertNewFieldToDatabase(boardId,i,j,obj.getValue(i,j));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
