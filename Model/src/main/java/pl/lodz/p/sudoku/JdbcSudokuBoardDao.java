@@ -6,54 +6,45 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class JdbcSudokuBoardDao implements Dao<SudokuBoard>, AutoCloseable {
 
-    private String fileName;
-    private FileInputStream fis;
-    private ObjectInputStream ois;
-    private FileOutputStream fos;
-    private ObjectOutputStream oos;
+    private DataBase dataBase;
 
-    public JdbcSudokuBoardDao(String fileName) {
-        this.fileName = fileName;
+    public JdbcSudokuBoardDao() {
+        this.dataBase = new DataBase();
+        this.dataBase.connect();
+    }
+
+    public void test() throws SQLException {
+        dataBase.test();
     }
 
     @Override
-    public SudokuBoard read() throws FileNotFoundException, MyException {
-        SudokuBoard result = null;
-        try {
-            fis = new FileInputStream(fileName);
-            ois = new ObjectInputStream(fis);
-            result = (SudokuBoard) ois.readObject();
-        } catch (ClassNotFoundException | IOException e) {
-            throw new MyException(e.getMessage());
-        }
+    public SudokuBoard read() {
 
+        SudokuBoard result = null;
+//        for (int i = 0; i < 9; i++) {
+//            for (int j = 0; j < 9; j++) {
+//                try {
+//                    result.set(i, j, dataBase.select("SudokuBoard" + tmp, i, j));
+//                    //sudokuBoard.set(i, j, db.select("sudokuBoard", i, j));
+//                } catch (MyException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
         return result;
     }
 
     @Override
-    public void write(SudokuBoard obj) throws MyException {
-        try {
-            fos = new FileOutputStream(fileName);
-            oos = new ObjectOutputStream(fos);
-            oos.writeObject(obj);
-        } catch (IOException e) {
-            throw new MyException(e.getMessage());
-        }
+    public void write(SudokuBoard obj) throws FileNotFoundException, MyException {
+
     }
 
     @Override
-    public void close() throws MyException {
-        try {
-            fis.close();
-            fos.close();
-            oos.close();
-            ois.close();
-        } catch (Exception e) {
-            throw new MyException(e.getMessage());
-        }
+    public void close() {
     }
 
     @Override

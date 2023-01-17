@@ -2,6 +2,7 @@ package pl.lodz.p.sudoku;
 
 import org.junit.jupiter.api.Test;
 
+import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -212,5 +213,12 @@ class SudokuBoardTest {
         }
 
         assertEquals(sumOfZeros,50);
+    }
+
+    @Test
+    void test() throws SQLException {
+        SudokuBoardDaoFactory factory = new SudokuBoardDaoFactory();
+        JdbcSudokuBoardDao db = (JdbcSudokuBoardDao) factory.createJdbcSudokuBoardDao();
+        db.test();
     }
 }
