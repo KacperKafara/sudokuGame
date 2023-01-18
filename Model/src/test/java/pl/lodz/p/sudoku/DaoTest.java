@@ -30,7 +30,6 @@ public class DaoTest {
         dataBase.write(board,"name");
         assertFalse(board == dataBase.read("name"));
         assertTrue(board.equals(dataBase.read("name")));
-        dataBase.truncate();
         dataBase.close();
         assertThrows(RuntimeException.class, () -> dataBase.read("name"));
     }

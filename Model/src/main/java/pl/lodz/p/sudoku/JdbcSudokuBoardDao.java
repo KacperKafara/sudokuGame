@@ -33,6 +33,9 @@ public class JdbcSudokuBoardDao implements Dao<SudokuBoard>, AutoCloseable {
     public void write(SudokuBoard obj, String name) throws MyException {
 
         try {
+            if (dataBase.isBoardOfNameInBase(name)) {
+                removeBoard(name);
+            }
             dataBase.insertNewBoardToDatabase(name);
             int boardId = dataBase.selectBoardId(name);
 
@@ -48,6 +51,12 @@ public class JdbcSudokuBoardDao implements Dao<SudokuBoard>, AutoCloseable {
 
     public void truncate() throws SQLException {
         dataBase.insertToDatabase("truncate board, field");
+    }
+
+    public void removeBoard(String name) throws SQLException {
+        int id = dataBase.selectBoardId(name);
+        dataBase.insertToDatabase("DELETE FROM field WHERE boardid='" + id + "';");
+        dataBase.insertToDatabase("DELETE FROM board WHERE name='" + name + "';");
     }
 
     @Override

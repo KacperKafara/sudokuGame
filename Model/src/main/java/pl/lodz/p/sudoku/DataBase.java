@@ -62,6 +62,17 @@ public class DataBase {
         return  resultSet.getInt(1);
     }
 
+    public boolean isBoardOfNameInBase(String name) throws SQLException {
+        String sql = "SELECT name FROM board WHERE name = '" + name + "';";
+        ResultSet resultSet = selectFromDatabase(sql);
+        if (!resultSet.isBeforeFirst() ) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
     public int selectValueOfField(int boardId, int x, int y) throws SQLException {
         String sql = "SELECT value FROM field WHERE boardId = 'var' AND x = 'var' AND y = 'var';";
         sql = sql.replaceFirst("var", String.valueOf(boardId));
