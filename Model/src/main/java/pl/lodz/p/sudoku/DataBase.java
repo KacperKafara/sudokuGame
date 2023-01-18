@@ -4,18 +4,39 @@ import java.sql.*;
 
 public class DataBase {
 
+    private Connection conection=null;
+
     public Connection connect() {
-        Connection connection = null;
-        String url = "jdbc:postgresql://localhost:5432/sudoku";
+        if (this.conection == null) {
+            Connection connection = null;
+            String url = "jdbc:postgresql://localhost:5432/sudoku";
+            try {
+                connection = DriverManager.getConnection(url, "postgres", "root");
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+            return connection;
+        } else {
+            return this.conection;
+        }
+    }
+
+    public void createNewDatabase() {
         try {
-            connection = DriverManager.getConnection(url,"postgres","root");
+            Connection connection = this.connect();
+            if (connection != null) {
+                DatabaseMetaData meta = connection.getMetaData();
+                System.out.println("A new database has been created.");
+                this.conection=connection;
+            }
+
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-        return connection;
     }
 
     public ResultSet selectFromDatabase(String query) throws SQLException {
+
         Connection connection = this.connect();
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(query);

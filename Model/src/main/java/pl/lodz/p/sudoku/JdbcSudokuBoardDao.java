@@ -14,7 +14,7 @@ public class JdbcSudokuBoardDao implements Dao<SudokuBoard>, AutoCloseable {
 
     public JdbcSudokuBoardDao() {
         this.dataBase = new DataBase();
-        this.dataBase.connect();
+        this.dataBase.createNewDatabase();
     }
 
     @Override
@@ -26,7 +26,6 @@ public class JdbcSudokuBoardDao implements Dao<SudokuBoard>, AutoCloseable {
             int boardId = dataBase.selectBoardId(name);
             for(int i=0;i<9;i++) {
                 for(int j=0;j<9;j++) {
-                    System.out.println(j+" "+i);
                     int value = dataBase.selectValueOfField(boardId,i,j);
                     result.setValue(i,j,value);
                 }
