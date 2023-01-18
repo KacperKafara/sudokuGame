@@ -3,6 +3,7 @@ package pl.lodz.p.sudoku;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
+import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -22,7 +23,7 @@ public class DaoTest {
 
 
     @Test
-    void dataBaseWriteTest() throws MyException {
+    void dataBaseWriteTest() throws MyException, SQLException {
         SudokuSolver solver = new BacktrackingSudokuSolver();
         SudokuBoard board = new SudokuBoard(solver);
         board.solveGame();
@@ -30,6 +31,7 @@ public class DaoTest {
         JdbcSudokuBoardDao dataBase = (JdbcSudokuBoardDao) factory.createJdbcSudokuBoardDao();
         dataBase.write(board,"name");
         assertTrue(board.equals(dataBase.read("name")));
+        dataBase.truncate();
         dataBase.close();
     }
 }

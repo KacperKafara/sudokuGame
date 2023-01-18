@@ -1,13 +1,18 @@
 package pl.lodz.p.sudoku;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class DataBase {
 
-    private Connection conection=null;
+    private Connection connection = null;
 
     public Connection connect() {
-        if (this.conection == null) {
+        if (this.connection == null) {
             Connection connection = null;
             String url = "jdbc:postgresql://localhost:5432/sudoku";
             try {
@@ -17,7 +22,7 @@ public class DataBase {
             }
             return connection;
         } else {
-            return this.conection;
+            return this.connection;
         }
     }
 
@@ -26,10 +31,8 @@ public class DataBase {
             Connection connection = this.connect();
             if (connection != null) {
                 DatabaseMetaData meta = connection.getMetaData();
-                System.out.println("A new database has been created.");
-                this.conection=connection;
+                this.connection = connection;
             }
-
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -50,22 +53,32 @@ public class DataBase {
     }
 
     public int selectBoardId(String name) throws SQLException {
-        ResultSet resultSet = selectFromDatabase("SELECT boardid FROM board WHERE name = '"+name+"';");
+        String sql = "SELECT boardid FROM board WHERE name = '" + name + "';";
+        ResultSet resultSet = selectFromDatabase(sql);
         resultSet.next();
         return  resultSet.getInt(1);
     }
 
     public int selectValueOfField(int boardId, int x, int y) throws SQLException {
-        ResultSet resultSet = selectFromDatabase("SELECT value FROM field WHERE boardId = '"+boardId+"' AND x = '"+x+"' AND y = '"+y+"';");
+        String sql = "SELECT value FROM field WHERE boardId = 'var' AND x = 'var' AND y = 'var';";
+        sql.replaceFirst("var", String.valueOf(boardId));
+        sql.replaceFirst("var", String.valueOf(x));
+        sql.replaceFirst("var", String.valueOf(y));
+        ResultSet resultSet = selectFromDatabase(sql);
         resultSet.next();
         return  resultSet.getInt(1);
     }
 
     public void insertNewBoardToDatabase(String name) throws SQLException {
-        insertToDatabase("INSERT INTO board (name) VALUES ('"+name+"');");
+        insertToDatabase("INSERT INTO board (name) VALUES ('" + name + "');");
     }
 
     public void insertNewFieldToDatabase(int boardId, int x, int y, int value) throws SQLException {
-        insertToDatabase("INSERT INTO field (boardid,x,y,value) VALUES ('"+boardId+"','"+x+"','"+y+"','"+value+"');");
+        String sql = "INSERT INTO field (boardid,x,y,value) VALUES ('var','var','var','var');";
+        sql.replaceFirst("var", String.valueOf(boardId));
+        sql.replaceFirst("var", String.valueOf(x));
+        sql.replaceFirst("var", String.valueOf(y));
+        sql.replaceFirst("var", String.valueOf(value));
+        insertToDatabase(sql);
     }
 }

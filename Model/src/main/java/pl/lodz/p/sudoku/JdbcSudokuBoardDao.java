@@ -1,11 +1,5 @@
 package pl.lodz.p.sudoku;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.sql.SQLException;
 
 public class JdbcSudokuBoardDao implements Dao<SudokuBoard>, AutoCloseable {
@@ -24,8 +18,8 @@ public class JdbcSudokuBoardDao implements Dao<SudokuBoard>, AutoCloseable {
         SudokuBoard result = new SudokuBoard(solver);
         try {
             int boardId = dataBase.selectBoardId(name);
-            for(int i=0;i<9;i++) {
-                for(int j=0;j<9;j++) {
+            for (int i = 0;i < 9;i++) {
+                for (int j = 0;j < 9;j++) {
                     int value = dataBase.selectValueOfField(boardId,i,j);
                     result.setValue(i,j,value);
                 }
@@ -43,8 +37,8 @@ public class JdbcSudokuBoardDao implements Dao<SudokuBoard>, AutoCloseable {
             dataBase.insertNewBoardToDatabase(name);
             int boardId = dataBase.selectBoardId(name);
 
-            for(int i=0;i<9;i++) {
-                for(int j=0;j<9;j++) {
+            for (int i = 0;i < 9;i++) {
+                for (int j = 0;j < 9;j++) {
                     dataBase.insertNewFieldToDatabase(boardId,i,j,obj.getValue(i,j));
                 }
             }
@@ -53,10 +47,16 @@ public class JdbcSudokuBoardDao implements Dao<SudokuBoard>, AutoCloseable {
         }
     }
 
+    public void truncate() throws SQLException {
+        dataBase.insertToDatabase("truncate board, field");
+    }
+
     @Override
     public void close() {
     }
 
     @Override
-    public void finalize() {}
+    public void finalize() {
+
+    }
 }
