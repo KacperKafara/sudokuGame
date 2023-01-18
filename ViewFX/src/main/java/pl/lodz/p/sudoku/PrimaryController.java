@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 import org.apache.log4j.Logger;
 
 public class PrimaryController implements Initializable {
@@ -24,6 +25,8 @@ public class PrimaryController implements Initializable {
     private Label author1;
     @FXML
     private Label author2;
+    @FXML
+    private TextField fieldFileName;
 
     private SudokuBoard sudoku;
 
@@ -91,9 +94,10 @@ public class PrimaryController implements Initializable {
     private void readFromFile() throws IOException, NoSuchMethodException, MyException {
         try {
             SudokuBoardDaoFactory factory = new SudokuBoardDaoFactory();
-            FileSudokuBoardDao file = (FileSudokuBoardDao) factory.createFileSudokuBoardDao("plik");
-            sudoku = file.read("name");
-            logger.info("Gra zaladowana z pliku");
+            String name = fieldFileName.getText();
+            JdbcSudokuBoardDao dataBase = (JdbcSudokuBoardDao) factory.createJdbcSudokuBoardDao();
+            sudoku = dataBase.read(name);
+            logger.info("Gra zaladowana z bazy danych");
             ResourceBundle bundle = ResourceBundle.getBundle("appText", defaultLocation);
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("secondary.fxml"), bundle);
@@ -101,7 +105,7 @@ public class PrimaryController implements Initializable {
             SecondaryController sc = loader.getController();
             sc.draw(sudoku);
         } catch (FileNotFoundException e) {
-            logger.error("Nie znaleziono pliku");
+            logger.error("Nie znaleziono planszy w bazie danych");
             throw new MyException(e.getMessage());
         }
     }

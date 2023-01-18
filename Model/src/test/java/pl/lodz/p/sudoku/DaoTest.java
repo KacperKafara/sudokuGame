@@ -1,8 +1,6 @@
 package pl.lodz.p.sudoku;
 
 import org.junit.jupiter.api.Test;
-
-import java.io.FileNotFoundException;
 import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -30,8 +28,10 @@ public class DaoTest {
         SudokuBoardDaoFactory factory = new SudokuBoardDaoFactory();
         JdbcSudokuBoardDao dataBase = (JdbcSudokuBoardDao) factory.createJdbcSudokuBoardDao();
         dataBase.write(board,"name");
+        assertFalse(board == dataBase.read("name"));
         assertTrue(board.equals(dataBase.read("name")));
         dataBase.truncate();
         dataBase.close();
+        assertThrows(RuntimeException.class, () -> dataBase.read("name"));
     }
 }

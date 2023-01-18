@@ -24,6 +24,8 @@ public class SecondaryController {
 
     @FXML
     private GridPane gridPane;
+    @FXML
+    private TextField readFieldName;
 
     ObservableList<Node> nodes;
 
@@ -98,12 +100,13 @@ public class SecondaryController {
     @FXML
     private void saveToFile() throws MyException {
         SudokuBoardDaoFactory factory = new SudokuBoardDaoFactory();
-        FileSudokuBoardDao file = (FileSudokuBoardDao) factory.createFileSudokuBoardDao("plik");
-        file.write(sudoku,"name");
+        String name = readFieldName.getText();
+        JdbcSudokuBoardDao dataBase = (JdbcSudokuBoardDao) factory.createJdbcSudokuBoardDao();
+        dataBase.write(sudoku, name);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(bundle.getString("alert.save"));
         alert.setHeaderText(bundle.getString("alert.saveMsg"));
-        logger.info("Gra zostala zapisana do pliku");
+        logger.info("Gra zostala zapisana do bazy danych");
         alert.showAndWait();
     }
 }

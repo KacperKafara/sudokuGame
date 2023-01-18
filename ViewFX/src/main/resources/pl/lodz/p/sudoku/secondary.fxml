@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="545.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.lodz.p.sudoku.SecondaryController">
+<Pane maxHeight="570.0" maxWidth="600.0" minHeight="570.0" minWidth="600.0" prefHeight="570.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.lodz.p.sudoku.SecondaryController">
    <children>
       <GridPane fx:id="gridPane" layoutX="105.0" layoutY="69.0" prefHeight="381.0" prefWidth="390.0">
         <columnConstraints>
@@ -113,10 +113,11 @@
             <TextField alignment="CENTER" prefHeight="44.0" prefWidth="44.0" GridPane.columnIndex="8" GridPane.rowIndex="8" />
          </children>
       </GridPane>
-      <Button layoutX="200.0" layoutY="480.0" mnemonicParsing="false" onAction="#saveToFile" prefHeight="51.0" prefWidth="199.0" text="%form.save">
+      <Button layoutX="201.0" layoutY="494.0" mnemonicParsing="false" onAction="#saveToFile" prefHeight="51.0" prefWidth="199.0" text="%form.save">
          <font>
             <Font size="24.0" />
          </font>
       </Button>
+      <TextField fx:id="readFieldName" layoutX="226.0" layoutY="461.0" />
    </children>
 </Pane>

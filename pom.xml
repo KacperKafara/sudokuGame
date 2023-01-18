@@ -102,11 +102,6 @@
             <artifactId>checkstyle</artifactId>
             <version>10.0</version>
           </dependency>
-          <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>42.2.5</version>
-          </dependency>
         </dependencies>
       </plugin>
       <plugin>
@@ -183,6 +178,12 @@
       <artifactId>javafx</artifactId>
       <version>19</version>
       <type>pom</type>
+    </dependency>
+
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>42.5.1</version>
     </dependency>
 
   </dependencies>

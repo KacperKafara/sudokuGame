@@ -11,6 +11,21 @@ public class DataBase {
 
     private Connection connection = null;
 
+    public Connection getConnection() {
+        return connection;
+    }
+
+    public DataBase() {
+        try {
+            Connection connection = this.connect();
+            if (connection != null) {
+                this.connection = connection;
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     public Connection connect() {
         if (this.connection == null) {
             Connection connection = null;
@@ -23,18 +38,6 @@ public class DataBase {
             return connection;
         } else {
             return this.connection;
-        }
-    }
-
-    public void createNewDatabase() {
-        try {
-            Connection connection = this.connect();
-            if (connection != null) {
-                DatabaseMetaData meta = connection.getMetaData();
-                this.connection = connection;
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
         }
     }
 
@@ -61,9 +64,9 @@ public class DataBase {
 
     public int selectValueOfField(int boardId, int x, int y) throws SQLException {
         String sql = "SELECT value FROM field WHERE boardId = 'var' AND x = 'var' AND y = 'var';";
-        sql.replaceFirst("var", String.valueOf(boardId));
-        sql.replaceFirst("var", String.valueOf(x));
-        sql.replaceFirst("var", String.valueOf(y));
+        sql = sql.replaceFirst("var", String.valueOf(boardId));
+        sql = sql.replaceFirst("var", String.valueOf(x));
+        sql = sql.replaceFirst("var", String.valueOf(y));
         ResultSet resultSet = selectFromDatabase(sql);
         resultSet.next();
         return  resultSet.getInt(1);
@@ -75,10 +78,10 @@ public class DataBase {
 
     public void insertNewFieldToDatabase(int boardId, int x, int y, int value) throws SQLException {
         String sql = "INSERT INTO field (boardid,x,y,value) VALUES ('var','var','var','var');";
-        sql.replaceFirst("var", String.valueOf(boardId));
-        sql.replaceFirst("var", String.valueOf(x));
-        sql.replaceFirst("var", String.valueOf(y));
-        sql.replaceFirst("var", String.valueOf(value));
+        sql = sql.replaceFirst("var", String.valueOf(boardId));
+        sql = sql.replaceFirst("var", String.valueOf(x));
+        sql = sql.replaceFirst("var", String.valueOf(y));
+        sql = sql.replaceFirst("var", String.valueOf(value));
         insertToDatabase(sql);
     }
 }

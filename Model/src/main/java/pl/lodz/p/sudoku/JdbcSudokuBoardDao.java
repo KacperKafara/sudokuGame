@@ -4,11 +4,10 @@ import java.sql.SQLException;
 
 public class JdbcSudokuBoardDao implements Dao<SudokuBoard>, AutoCloseable {
 
-    private DataBase dataBase;
+    private final DataBase dataBase;
 
     public JdbcSudokuBoardDao() {
         this.dataBase = new DataBase();
-        this.dataBase.createNewDatabase();
     }
 
     @Override
@@ -52,11 +51,7 @@ public class JdbcSudokuBoardDao implements Dao<SudokuBoard>, AutoCloseable {
     }
 
     @Override
-    public void close() {
-    }
-
-    @Override
-    public void finalize() {
-
+    public void close() throws SQLException {
+        this.dataBase.getConnection().close();
     }
 }
