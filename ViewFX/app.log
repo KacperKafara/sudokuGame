@@ -45,3 +45,17 @@
 2023-01-18 23:46:46 INFO  SecondaryController:109 - Gra zostala zapisana do bazy danych
 2023-01-18 23:47:10 INFO  PrimaryController:100 - Gra zaladowana z bazy danych
 2023-01-18 23:49:15 INFO  PrimaryController:100 - Gra zaladowana z bazy danych
+2023-01-19 00:20:52 INFO  PrimaryController:100 - Gra zaladowana z bazy danych
+2023-01-19 00:21:53 INFO  PrimaryController:53 - Gra zaladowana na poziomie srednim
+2023-01-19 00:22:02 INFO  SecondaryController:109 - Gra zostala zapisana do bazy danych
+2023-01-19 00:22:14 INFO  PrimaryController:100 - Gra zaladowana z bazy danych
+2023-01-19 00:22:30 INFO  SecondaryController:109 - Gra zostala zapisana do bazy danych
+2023-01-19 00:34:04 INFO  PrimaryController:49 - Gra zaladowana na poziomie latwym
+2023-01-19 00:34:20 INFO  SecondaryController:109 - Gra zostala zapisana do bazy danych
+2023-01-19 00:34:32 INFO  PrimaryController:100 - Gra zaladowana z bazy danych
+2023-01-19 00:34:40 INFO  SecondaryController:109 - Gra zostala zapisana do bazy danych
+2023-01-19 00:36:33 INFO  PrimaryController:57 - Gra zaladowana na poziomie trudnym
+2023-01-19 00:36:39 INFO  SecondaryController:109 - Gra zostala zapisana do bazy danych
+2023-01-19 00:36:50 INFO  PrimaryController:100 - Gra zaladowana z bazy danych
+2023-01-19 00:37:02 INFO  SecondaryController:109 - Gra zostala zapisana do bazy danych
+2023-01-19 00:37:13 INFO  PrimaryController:100 - Gra zaladowana z bazy danych

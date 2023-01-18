@@ -1,7 +1,6 @@
 package pl.lodz.p.sudoku;
 
 import java.sql.Connection;
-import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -57,18 +56,18 @@ public class DataBase {
 
     public int selectBoardId(String name) throws SQLException {
         String sql = "SELECT boardid FROM board WHERE name = '" + name + "';";
-        ResultSet resultSet = selectFromDatabase(sql);
-        resultSet.next();
-        return  resultSet.getInt(1);
+        try (ResultSet resultSet = selectFromDatabase(sql)) {
+            resultSet.next();
+            return resultSet.getInt(1);
+        }
     }
 
     public boolean isBoardOfNameInBase(String name) throws SQLException {
         String sql = "SELECT name FROM board WHERE name = '" + name + "';";
         ResultSet resultSet = selectFromDatabase(sql);
-        if (!resultSet.isBeforeFirst() ) {
+        if (!resultSet.isBeforeFirst()) {
             return false;
-        }
-        else {
+        } else {
             return true;
         }
     }
@@ -78,9 +77,10 @@ public class DataBase {
         sql = sql.replaceFirst("var", String.valueOf(boardId));
         sql = sql.replaceFirst("var", String.valueOf(x));
         sql = sql.replaceFirst("var", String.valueOf(y));
-        ResultSet resultSet = selectFromDatabase(sql);
-        resultSet.next();
-        return  resultSet.getInt(1);
+        try (ResultSet resultSet = selectFromDatabase(sql)) {
+            resultSet.next();
+            return resultSet.getInt(1);
+        }
     }
 
     public void insertNewBoardToDatabase(String name) throws SQLException {

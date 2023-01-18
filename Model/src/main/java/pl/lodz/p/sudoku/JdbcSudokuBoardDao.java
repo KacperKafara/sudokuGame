@@ -49,10 +49,6 @@ public class JdbcSudokuBoardDao implements Dao<SudokuBoard>, AutoCloseable {
         }
     }
 
-    public void truncate() throws SQLException {
-        dataBase.insertToDatabase("truncate board, field");
-    }
-
     public void removeBoard(String name) throws SQLException {
         int id = dataBase.selectBoardId(name);
         dataBase.insertToDatabase("DELETE FROM field WHERE boardid='" + id + "';");
